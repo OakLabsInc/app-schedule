@@ -1,0 +1,20 @@
+md-content
+  .markdown(data-markdown="" link="env.md")
+  div(ng-if="showAuthForm")
+    div
+      | Since you need to make calls to the Dashboard API you will need a token by loging in below
+    form(autocomplete="off" name='authForm')
+    
+      md-input-container(class="md-block" flex-gt-sm)
+        label Dashboard Email
+        input(ng-model="user.dashboardEmail" type='email' autocomplete="nope"   required)
+      md-input-container(class="md-block" flex-gt-sm)
+        label Dashboard Password
+        input(ng-model="user.dashboardPassword" type="password" autocomplete="nope" required)
+      
+      md-button(ng-click="getAuthToken(user, authForm)") Login
+  
+  div(ng-if="!showAuthForm")
+    .markdown(data-markdown="" link="login.md")
+    md-button(ng-click="removeAuthToken()") Remove Dashboard Login
+  //- pre(ng-if="!showAuthForm" style="text-align:left") {{api | json}}

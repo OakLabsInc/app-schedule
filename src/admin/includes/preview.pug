@@ -1,0 +1,12 @@
+md-tab-label Preview
+md-tab-body
+  md-content.no-overflow
+    .preview-container(ng-class="{'portrait':settings.selectedSchedule.portrait}")
+      include swiper.pug
+    p &nbsp;
+    p &nbsp;
+    a(href="/preview.html?apikey={{user.uid}}&schedulename={{settings.selectedSchedule.name}}" target="_blank") Preview Page (opens new tab)
+    //- pre(style="text-align:left") {{settings.selectedSchedule | json}}
+    p &nbsp;
+    p &nbsp;
+    p &nbsp;
