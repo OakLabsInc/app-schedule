@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width">
+    <title>Signage Admin</title>
+    <link rel="stylesheet" href="vendor/angular-material.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|IBM+Plex+Sans+Condensed:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="admin.css">
+    <link type="text/css" rel="stylesheet" href="vendor/mdColorPicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+  </head>
+  <body ng-app="signageApp" ng-controller="appController" ng-cloak="">
+    <div layout="column" layout-fill="">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <md-button class="md-fab md-mini" id="scheduleMenu" ng-click="toggleLeft()" hide-gt-md="">
+            <md-icon class="material-icons">menu</md-icon>
+          </md-button>
+          <h2 md-truncate="" flex="">Signage Application Admin</h2>
+          <md-button ng-click="logout()" ng-if="isLoggedIn" ng-cloak="">Logout</md-button>
+        </div>
+      </md-toolbar>
+      <md-content layout-padding>
+        <h2>PRIVACY POLICY</h2>
+        <p>his Privacy Policy discloses the online privacy practices for ZIVELO and its affiliates (collectively, “ZIVELO”) and applies to the information we collect through https://www.zivelo.com (the “Site”). By accessing and/or using the Site, you are consenting to the collection, storage, and disclosure of data as described in this Privacy Policy.</p>
+        <p>ZIVELO reserves the right, at any time, to modify, alter, update, or remove portions of this Privacy Policy. We will post any changes to this Policy on this page so you can readily review the most current version. We will alert you that changes have been made by indicating on the bottom of this Privacy Policy the date it was last updated.</p>
+        <p>YOUR IP ADDRESS An Internet Protocol (IP) address is a number that is automatically assigned to your computer every time you browse the Internet. When a user requests a page from the Site, our servers log the user’s current IP address. We use IP addresses to help diagnose problems with our servers and to administer the Site.</p>
+        <p>COOKIES The Site is developed using Active Server Pages (ASP), and we use per-session “cookies” (pieces of data your browser stores in your computer’s memory at ZIVELO’s request) to establish user sessions on our server. We use the cookies to carry information about usage from page to page through the Site. ZIVELO does not use cookies to retrieve personal information about you from your computer.</p>
+        <p>Most browsers are set up to accept cookies, but you can usually change your browser settings to refuse them. If you disable cookies, your browser may experience some erratic behavior on some portions of the Site.</p>
+        <p>SUBMISSION INFORMATION When you submit a request through the Site, we will ask you to provide a variety of information, including, without limitation, your company’s name and contact information, a description of your project, and possibly budgetary information.</p>
+        <p>When you request to receive updates from us, we will ask you to provide a variety of information, including, without limitation, your name, your email address, and the name of your organization. ZIVELO reserves the right to refuse any request for information for any reason.</p>
+        <p>USE OF SUBMISSION INFORMATION All or any part of the information we collect through the Site (including, without limitation, information regarding specific projects, requests for information or updates, and feedback regarding the Site) is referred to in this Privacy Policy as “Submission Information.”</p>
+        <p>As described in our Terms of Use, ZIVELO does not accept or collect Submission Information on a confidential or proprietary basis. Consequently, we are free to use Submission Information for any purpose whatsoever.</p>
+        <p>DISCLOSURES TO THIRD PARTIES Because ZIVELO does not accept or collect Submission Information on a confidential or proprietary basis, from time to time ZIVELO may disclose your Submission Information to third parties, including, without limitation, other potential customers, our consultants, our representatives, our affiliated companies and others.</p>
+        <p>DISCLOSURES FOR LEGAL REASONS ZIVELO will also disclose Submission Information when it believes, in its sole discretion, that the law requires such disclosure or that such disclosure is necessary to: comply with the law, protect and defend the rights or property of ZIVELO or others, or act under exigent circumstances to protect the personal safety of the public or the users of the Site.</p>
+        <p>| LINKS This Privacy Policy applies only to information collected by ZIVELO. Other websites (including those that we may link to) may have their own policies. ZIVELO has no responsibility for or control over the information-collection practices of such third party websites.</p>
+        <p>HOW TO CONTACT US If you have any questions about this Privacy Policy, please e-mail us at info@zivelo.com or call our toll-free number 1.877.4.ZIVELO.</p>
+      </md-content>
+      <div id="firebaseui-auth-container"></div>
+    </div>
+    <div id="loadingPanel" ng-show="imageIsUploading">
+      <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
+    </div>
+  </body>
+</html>

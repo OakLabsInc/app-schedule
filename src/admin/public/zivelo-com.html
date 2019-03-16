@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width">
+    <title>ZIVELO SHOWROOM</title>
+    <link rel="stylesheet" href="vendor/angular-material.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|IBM+Plex+Sans+Condensed:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="admin.css">
+    <link type="text/css" rel="stylesheet" href="vendor/mdColorPicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+  </head>
+  <body ng-app="showroomApp" ng-controller="appController" ng-cloak="">
+    <md-toolbar layout="row" layout-align="center center">
+      <h2>ZIVELO SHOWROOM</h2>
+    </md-toolbar>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 5627 2340" style="enable-background:new 0 0 5627 2340;" xml:space="preserve">
+      <style type="text/css">
+        .md-button.md-fab.md-mini{margin: 0 25px;}
+        .st0{fill:#f3f1f1;stroke:#f3f1f1;stroke-width:9;stroke-miterlimit:10;}
+        .st1{fill:#FFFFFF;}
+        .st1.selected{fill:rgb(251,142,145);}
+        .st1.selected + .st2{stroke:rgb(251,142,145);}
+        .st2{fill:none;stroke:#808080;stroke-width:9;stroke-miterlimit:10;}
+        .st2.green{stroke:rgb(251,142,145);}
+        .st2.red{stroke:#808080;}
+        .st3{fill:#dedede;}
+        .st4{fill:none;stroke:#808080;stroke-width:8;stroke-miterlimit:10;}
+        .st5{fill:#4D4D4D;}
+        .st6{font-family:'TradeGothic-BoldCondTwenty'}
+        .st7{font-size:72px;}
+        .st8{fill:none;}
+      </style>
+      <g id="walls" ng-click="clearSelectedDemoKiosks()">
+        <polygon class="st0" id="wall_path" points="0.5,1646.5 2566.5,1458.5 5627.5,1717.5 5627.5,82.5 2584.5,395.5 1.5,64.5 	"></polygon>
+      </g>
+      <g id="kiosks"> 
+        <g id="kiosk11">
+          <g id="kiosk11_kiosk" ng-click="scheduleInfo['d89ef376792c'].online?setSelectedDemoKiosk('#kiosk11_kiosk .st1', 'd89ef376792c', 'showroom8'):''">
+            <path class="st1" d="M4888.5,1686.5c0,0.6-0.4,0.8-0.9,0.5l-18.2-10c-0.5-0.3-1.3-0.5-1.9-0.6l-148-12.8c-0.5,0-1.3,0.2-1.7,0.6            l-49.6,50.6c-0.4,0.4-0.3,0.8,0.3,0.8l155,18.8c0.5,0.1,1.4,0,2-0.1l32-6.6c0.5-0.1,1.4-0.2,2-0.1l295,25.8            c0.5,0,1.4,0.3,1.9,0.5l38.1,15.3c0.5,0.2,1.4,0.4,1.9,0.5l195,18.8c0.5,0.1,1-0.4,1-0.9v-65c0-0.6-0.4-1-1-1.1l-175-16.8            c-0.5-0.1-1.4,0.1-1.9,0.2l-27.1,9.3c-0.5,0.2-1.4,0.3-1.9,0.2l-23-1.8c-0.5,0-1-0.5-1-1.1l4-317c0-0.5,0.5-1,1-1h95            c0.5,0,1-0.4,1-1v-26c0-0.6,0.5-1,1-1h6c0.5,0,1.5,0,2,0h9c0.5,0,1-0.4,1-1l7.9-189c0-0.5-0.3-1.3-0.8-1.6l-5.4-3.8            c-0.4-0.3-1.2-0.3-1.6,0l-8.4,6.8c-0.4,0.3-1.2,0.6-1.8,0.6l-458-7c-0.6,0-1.4-0.2-1.9-0.4l-9.1-3.3c-0.5-0.2-1,0.1-1.1,0.6            l-32.6,156c-0.1,0.5-0.2,1.4-0.2,2l0.9,22c0,0.5,0.5,1,1,0.9l14-0.9c0.5,0,1.1,0.4,1.2,0.9l5.6,25c0.1,0.5,0.7,1,1.2,1l98,5.9            c0.5,0,1,0.5,1,1.1L4888.5,1686.5z"></path>
+            <path class="st2" ng-class="scheduleInfo['d89ef376792c'].online?'green':'red'" d="M4888.5,1686.5c0,0.6-0.4,0.8-0.9,0.5l-18.2-10c-0.5-0.3-1.3-0.5-1.9-0.6l-148-12.8c-0.5,0-1.3,0.2-1.7,0.6            l-49.6,50.6c-0.4,0.4-0.3,0.8,0.3,0.8l155,18.8c0.5,0.1,1.4,0,2-0.1l32-6.6c0.5-0.1,1.4-0.2,2-0.1l295,25.8            c0.5,0,1.4,0.3,1.9,0.5l38.1,15.3c0.5,0.2,1.4,0.4,1.9,0.5l195,18.8c0.5,0.1,1-0.4,1-0.9v-65c0-0.6-0.4-1-1-1.1l-175-16.8            c-0.5-0.1-1.4,0.1-1.9,0.2l-27.1,9.3c-0.5,0.2-1.4,0.3-1.9,0.2l-23-1.8c-0.5,0-1-0.5-1-1.1l4-317c0-0.5,0.5-1,1-1h95            c0.5,0,1-0.4,1-1v-26c0-0.6,0.5-1,1-1h6c0.5,0,1.5,0,2,0h9c0.5,0,1-0.4,1-1l7.9-189c0-0.5-0.3-1.3-0.8-1.6l-5.4-3.8            c-0.4-0.3-1.2-0.3-1.6,0l-8.4,6.8c-0.4,0.3-1.2,0.6-1.8,0.6l-458-7c-0.6,0-1.4-0.2-1.9-0.4l-9.1-3.3c-0.5-0.2-1,0.1-1.1,0.6            l-32.6,156c-0.1,0.5-0.2,1.4-0.2,2l0.9,22c0,0.5,0.5,1,1,0.9l14-0.9c0.5,0,1.1,0.4,1.2,0.9l5.6,25c0.1,0.5,0.7,1,1.2,1l98,5.9            c0.5,0,1,0.5,1,1.1L4888.5,1686.5z"></path>
+            <path class="st3" d="M4847.3,1197.5c0.1-0.5,0.7-1,1.2-1l378,8c0.6,0,1,0.5,0.9,1l-6.9,112c0,0.5-0.5,1-1.1,1l-394-13.9            c-0.5,0-0.9-0.5-0.8-1L4847.3,1197.5z"></path>
+            <path class="st2" d="M4847.3,1197.5c0.1-0.5,0.7-1,1.2-1l378,8c0.6,0,1,0.5,0.9,1l-6.9,112c0,0.5-0.5,1-1.1,1l-394-13.9            c-0.5,0-0.9-0.5-0.8-1L4847.3,1197.5z"></path>
+          </g>
+        </g>
+        <g id="kiosk10">
+          <g id="kiosk10_kiosk"> 
+            <path class="st1" d="M4169.5,1626.5c0,0.6-0.4,1.3-0.8,1.6l-15.4,11.8c-0.4,0.3-1.2,0.8-1.7,1l-31.2,14.2            c-0.5,0.2-0.5,0.5,0.1,0.5l288,28.8c0.5,0.1,1.4,0.2,2,0.2l25,3.7c0.5,0.1,1.4,0.2,2,0.3l37,6.6c0.5,0.1,1.4,0.1,2,0l22-3.7            c0.5-0.1,1.1-0.6,1.3-1.1l5.3-14.1c0.2-0.5,0.7-1.2,1.2-1.5l25.4-17.8c0.4-0.3,0.4-0.6-0.2-0.6l-54-3.9c-0.5,0-1-0.5-1-1.1l1-406            c0-0.6,0-1.4,0-2l4.9-138c0-0.5,0.5-1,1-1h15c0.5,0,1-0.4,1-1l1.9-40c0-0.5-0.4-1-1-1h-13c-0.5,0-1-0.4-1-1l3.9-78            c0-0.5-0.3-1.3-0.7-1.6l-5.5-4.7c-0.4-0.4-1.2-0.7-1.8-0.7h-5c-0.5,0-1,0.5-1,1v4c0,0.5-0.5,1-1,1l-270,4c-0.5,0-1.3-0.3-1.7-0.7            l-6.6-6.6c-0.4-0.4-1.2-0.7-1.7-0.7h-4c-0.5,0-1,0.4-1.1,1l-18.9,255c0,0.5-0.1,1.4-0.1,2L4169.5,1626.5z"></path>
+            <path class="st2" d="M4169.5,1626.5c0,0.6-0.4,1.3-0.8,1.6l-15.4,11.8c-0.4,0.3-1.2,0.8-1.7,1l-31.2,14.2            c-0.5,0.2-0.5,0.5,0.1,0.5l288,28.8c0.5,0.1,1.4,0.2,2,0.2l25,3.7c0.5,0.1,1.4,0.2,2,0.3l37,6.6c0.5,0.1,1.4,0.1,2,0l22-3.7            c0.5-0.1,1.1-0.6,1.3-1.1l5.3-14.1c0.2-0.5,0.7-1.2,1.2-1.5l25.4-17.8c0.4-0.3,0.4-0.6-0.2-0.6l-54-3.9c-0.5,0-1-0.5-1-1.1l1-406            c0-0.6,0-1.4,0-2l4.9-138c0-0.5,0.5-1,1-1h15c0.5,0,1-0.4,1-1l1.9-40c0-0.5-0.4-1-1-1h-13c-0.5,0-1-0.4-1-1l3.9-78            c0-0.5-0.3-1.3-0.7-1.6l-5.5-4.7c-0.4-0.4-1.2-0.7-1.8-0.7h-5c-0.5,0-1,0.5-1,1v4c0,0.5-0.5,1-1,1l-270,4c-0.5,0-1.3-0.3-1.7-0.7            l-6.6-6.6c-0.4-0.4-1.2-0.7-1.7-0.7h-4c-0.5,0-1,0.4-1.1,1l-18.9,255c0,0.5-0.1,1.4-0.1,2L4169.5,1626.5z"></path>
+            <path class="st3" d="M4220.4,1057.5c0-0.5,0.5-1,1.1-1h220c0.5,0,1,0.4,0.9,1l-5.9,116c0,0.5-0.5,1-1.1,1l-222-4            c-0.6,0-1-0.5-0.9-1L4220.4,1057.5z"></path>
+            <path class="st2" d="M4220.4,1057.5c0-0.5,0.5-1,1.1-1h220c0.5,0,1,0.4,0.9,1l-5.9,116c0,0.5-0.5,1-1.1,1l-222-4            c-0.6,0-1-0.5-0.9-1L4220.4,1057.5z"></path>
+          </g>
+        </g>
+        <g id="kiosk09">
+          <g id="kiosk09_kiosk" ng-click="scheduleInfo['484d7ef5bfd7'].online?setSelectedDemoKiosk('#kiosk09_kiosk .st1', '484d7ef5bfd7', 'showroom5'):''">
+            <path class="st1" d="M3722.5,1598.5c0,0.6-0.4,1.2-0.9,1.4l-46.2,19.2c-0.5,0.2-0.5,0.4,0.1,0.4h46c0.6,0,1.4,0,2,0.1l124,11.8            c0.5,0.1,1.4,0.2,2,0.4l22.1,6.4c0.5,0.2,1.4,0.3,2,0.3h20c0.6,0,1.4-0.2,1.9-0.5l23.3-14c0.5-0.3,1.3-0.7,1.8-0.9l43.1-17.3            c0.5-0.2,0.5-0.4-0.1-0.4l-52-1c-0.5,0-1-0.5-1-1v-372c0-0.6,0-1.4,0.1-2l15.9-264c0-0.5-0.4-1.2-0.9-1.3l-9.1-3.3            c-0.5-0.2-1.4-0.3-1.9-0.3h-5c-0.6,0-1.1,0.4-1.2,1l-0.7,4c-0.1,0.5-0.6,1-1.2,1l-149,3.9c-0.5,0-1-0.4-1-1v-4c0-0.5-0.4-1-1-1            h-12c-0.6,0-1,0.4-1.1,1l-19.8,260c0,0.5-0.1,1.4-0.1,2v367c0,0.6,0,1.4,0,2V1598.5z"></path>
+            <path class="st2" ng-class="scheduleInfo['484d7ef5bfd7'].online?'green':'red'" d="M3722.5,1598.5c0,0.6-0.4,1.2-0.9,1.4l-46.2,19.2c-0.5,0.2-0.5,0.4,0.1,0.4h46c0.6,0,1.4,0,2,0.1l124,11.8            c0.5,0.1,1.4,0.2,2,0.4l22.1,6.4c0.5,0.2,1.4,0.3,2,0.3h20c0.6,0,1.4-0.2,1.9-0.5l23.3-14c0.5-0.3,1.3-0.7,1.8-0.9l43.1-17.3            c0.5-0.2,0.5-0.4-0.1-0.4l-52-1c-0.5,0-1-0.5-1-1v-372c0-0.6,0-1.4,0.1-2l15.9-264c0-0.5-0.4-1.2-0.9-1.3l-9.1-3.3            c-0.5-0.2-1.4-0.3-1.9-0.3h-5c-0.6,0-1.1,0.4-1.2,1l-0.7,4c-0.1,0.5-0.6,1-1.2,1l-149,3.9c-0.5,0-1-0.4-1-1v-4c0-0.5-0.4-1-1-1            h-12c-0.6,0-1,0.4-1.1,1l-19.8,260c0,0.5-0.1,1.4-0.1,2v367c0,0.6,0,1.4,0,2V1598.5z"></path>
+            <path class="st3" d="M3769.4,1008.5c0-0.5,0.5-1,1.1-1h112c0.6,0,1,0.4,0.9,1l-14.8,195c0,0.5-0.5,1-1.1,1h-110            c-0.6,0-1-0.4-0.9-1L3769.4,1008.5z"></path>
+            <path class="st2" d="M3769.4,1008.5c0-0.5,0.5-1,1.1-1h112c0.6,0,1,0.4,0.9,1l-14.8,195c0,0.5-0.5,1-1.1,1h-110            c-0.6,0-1-0.4-0.9-1L3769.4,1008.5z"></path>
+          </g>
+        </g>
+        <g id="kiosk08">
+          <g id="kiosk08_kiosk" ng-click="scheduleInfo['1866da346adb'].online?setSelectedDemoKiosk('#kiosk08_kiosk .st1', '1866da346adb', 'showroom13'):''">
+            <path class="st1" d="M3335.5,1563.5c0,0.6-0.4,1.2-0.9,1.4l-13.1,5.3c-0.5,0.2-1.4,0.5-1.9,0.7l-34.1,11.4            c-0.5,0.2-0.5,0.4,0,0.4l185,16.8c0.5,0,1.4,0.1,2,0.1h9c0.6,0,1.4-0.2,1.9-0.5l13.2-7.1c0.5-0.3,1.3-0.7,1.8-0.9l19.2-9.1            c0.5-0.2,1.3-0.5,1.9-0.7l43.1-11.5c0.5-0.1,0.5-0.3,0-0.3l-58-4.8c-0.5,0-1-0.5-1-1.1l-3-341c0-0.6,0-1.4,0.1-2l21.8-247            c0-0.5-0.4-1-0.9-1h-7c-0.6,0-1.4,0-2,0h-5c-0.6,0-1.4,0-2,0l-124,3.9c-0.5,0-1.1-0.4-1.2-0.9l-0.5-2.1c-0.1-0.5-0.7-1-1.2-1h-13            c-0.6,0-1.1,0.4-1.1,1l-27.8,244c-0.1,0.5-0.1,1.4-0.1,2L3335.5,1563.5z"></path>
+            <path class="st2" ng-class="scheduleInfo['1866da346adb'].online?'green':'red'" d="M3335.5,1563.5c0,0.6-0.4,1.2-0.9,1.4l-13.1,5.3c-0.5,0.2-1.4,0.5-1.9,0.7l-34.1,11.4            c-0.5,0.2-0.5,0.4,0,0.4l185,16.8c0.5,0,1.4,0.1,2,0.1h9c0.6,0,1.4-0.2,1.9-0.5l13.2-7.1c0.5-0.3,1.3-0.7,1.8-0.9l19.2-9.1            c0.5-0.2,1.3-0.5,1.9-0.7l43.1-11.5c0.5-0.1,0.5-0.3,0-0.3l-58-4.8c-0.5,0-1-0.5-1-1.1l-3-341c0-0.6,0-1.4,0.1-2l21.8-247            c0-0.5-0.4-1-0.9-1h-7c-0.6,0-1.4,0-2,0h-5c-0.6,0-1.4,0-2,0l-124,3.9c-0.5,0-1.1-0.4-1.2-0.9l-0.5-2.1c-0.1-0.5-0.7-1-1.2-1h-13            c-0.6,0-1.1,0.4-1.1,1l-27.8,244c-0.1,0.5-0.1,1.4-0.1,2L3335.5,1563.5z"></path>
+            <path class="st3" d="M3384.4,1013.5c0.1-0.5,0.5-1,1.1-1h94c0.6,0,1,0.4,0.9,1l-16.8,182c-0.1,0.5-0.5,1-1.1,1h-95            c-0.6,0-1-0.4-0.9-1L3384.4,1013.5z"></path>
+            <path class="st2" d="M3384.4,1013.5c0.1-0.5,0.5-1,1.1-1h94c0.6,0,1,0.4,0.9,1l-16.8,182c-0.1,0.5-0.5,1-1.1,1h-95            c-0.6,0-1-0.4-0.9-1L3384.4,1013.5z"></path>
+          </g>
+        </g>
+        <g id="kiosk07">
+          <g id="kiosk07_kiosk" ng-click="scheduleInfo['509a4c47594d'].online?setSelectedDemoKiosk('#kiosk07_kiosk .st1', '509a4c47594d', 'showroom2'):''">
+            <path class="st1" d="M2968.4,981.5c0.1-0.5,0.6-1,1.1-1h10c0.6,0,1,0.5,1,1v4c0,0.5,0.4,1,1,1h112c0.6,0,1-0.5,1-1v-4            c0-0.5,0.4-1,1-1h4c0.6,0,1.4,0.1,2,0.3l9.1,2.5c0.5,0.1,1,0.7,1,1.3v47c0,0.6,0,1.4-0.1,2l-14.8,183c0,0.5,0.3,1.2,0.8,1.4            l31.2,14.2c0.5,0.2,0.9,0.9,0.9,1.4v299c0,0.6,0.4,1.1,1,1.1l39,4.8c0.5,0.1,0.6,0.2,0,0.4l-90.1,25.5c-0.5,0.1-1.4,0.2-2,0.2            l-156-13.8c-0.5,0-0.6-0.3-0.1-0.5l27.2-11.2c0.5-0.2,0.9-0.8,0.9-1.4l-5-324c0-0.5,0-1.4,0.1-2L2968.4,981.5z"></path>
+            <path class="st2" ng-class="scheduleInfo['509a4c47594d'].online?'green':'red'" d="M2968.4,981.5c0.1-0.5,0.6-1,1.1-1h10c0.6,0,1,0.5,1,1v4c0,0.5,0.4,1,1,1h112c0.6,0,1-0.5,1-1v-4            c0-0.5,0.4-1,1-1h4c0.6,0,1.4,0.1,2,0.3l9.1,2.5c0.5,0.1,1,0.7,1,1.3v47c0,0.6,0,1.4-0.1,2l-14.8,183c0,0.5,0.3,1.2,0.8,1.4            l31.2,14.2c0.5,0.2,0.9,0.9,0.9,1.4v299c0,0.6,0.4,1.1,1,1.1l39,4.8c0.5,0.1,0.6,0.2,0,0.4l-90.1,25.5c-0.5,0.1-1.4,0.2-2,0.2            l-156-13.8c-0.5,0-0.6-0.3-0.1-0.5l27.2-11.2c0.5-0.2,0.9-0.8,0.9-1.4l-5-324c0-0.5,0-1.4,0.1-2L2968.4,981.5z"></path>
+            <path class="st3" d="M2988.4,1019.5c0.1-0.5,0.5-1,1.1-1h83c0.6,0,1,0.4,0.9,1l-16.8,170c-0.1,0.5-0.5,1-1.1,1h-82            c-0.6,0-1-0.4-0.9-1L2988.4,1019.5z"></path>
+            <path class="st2" d="M2988.4,1019.5c0.1-0.5,0.5-1,1.1-1h83c0.6,0,1,0.4,0.9,1l-16.8,170c-0.1,0.5-0.5,1-1.1,1h-82            c-0.6,0-1-0.4-0.9-1L2988.4,1019.5z"></path>
+          </g>
+        </g>
+        <g id="kiosk06">
+          <g id="kiosk06_kiosk" ng-click="scheduleInfo['14b31f120d8f'].online?setSelectedDemoKiosk('#kiosk06_kiosk .st1', '14b31f120d8f', 'showroom1'):''">
+            <path class="st1" d="M2413,1483c0,0.6-0.5,1-1,1h-7c-0.6,0-1.2,0.4-1.4,0.9l-8.1,17.2c-0.2,0.5-0.8,1.2-1.3,1.5l-29.3,19.9            c-0.5,0.3-0.4,0.6,0.2,0.6l382,18.9c0.5,0,1-0.4,1-1v-19c0-0.6,0.3-1.3,0.7-1.7l19.6-20.6c0.4-0.4,0.2-0.7-0.3-0.8l-49-1.9            c-0.5,0-1-0.5-1-1l10-707c0-0.5-0.4-1-1-1h-8c-0.6,0-1.1,0.4-1.1,1l-0.8,6c-0.1,0.5-0.6,1-1.1,1l-285,2c-0.6,0-1-0.4-1-1v-3            c0-0.5-0.4-1-1-1.1l-10-0.8c-0.5,0-1,0.4-1,0.9L2413,1483z"></path>
+            <path class="st2" ng-class="scheduleInfo['14b31f120d8f'].online?'green':'red'" d="M2413,1483c0,0.6-0.5,1-1,1h-7c-0.6,0-1.2,0.4-1.4,0.9l-8.1,17.2c-0.2,0.5-0.8,1.2-1.3,1.5l-29.3,19.9            c-0.5,0.3-0.4,0.6,0.2,0.6l382,18.9c0.5,0,1-0.4,1-1v-19c0-0.6,0.3-1.3,0.7-1.7l19.6-20.6c0.4-0.4,0.2-0.7-0.3-0.8l-49-1.9            c-0.5,0-1-0.5-1-1l10-707c0-0.5-0.4-1-1-1h-8c-0.6,0-1.1,0.4-1.1,1l-0.8,6c-0.1,0.5-0.6,1-1.1,1l-285,2c-0.6,0-1-0.4-1-1v-3            c0-0.5-0.4-1-1-1.1l-10-0.8c-0.5,0-1,0.4-1,0.9L2413,1483z"></path>
+            <path class="st3" d="M2455,836c0-0.5,0.5-1,1-1l231-1c0.6,0,1,0.4,1,1l-3,408c0,0.6-0.5,1-1,1l-233-3c-0.6,0-1-0.5-1-1L2455,836z            "></path>
+            <path class="st4" d="M2455,836c0-0.5,0.5-1,1-1l231-1c0.6,0,1,0.4,1,1l-3,408c0,0.6-0.5,1-1,1l-233-3c-0.6,0-1-0.5-1-1L2455,836z            "></path>
+          </g>
+        </g>
+        <g id="kiosk05">
+          <g id="kiosk05_kiosk" ng-click="scheduleInfo['484d7ef596bc'].online?setSelectedDemoKiosk('#kiosk05_kiosk .st1', '484d7ef596bc', 'showroom9'):''">
+            <path class="st1" d="M2062,1512c0,0.5-0.5,1-1,1.1l-76,5.8c-0.5,0-0.6,0.2,0,0.4l59.1,18.4c0.5,0.2,1.4,0.5,1.9,0.6l47.1,17.3            c0.5,0.2,1.4,0.3,1.9,0.3l229-16.9c0.5,0,0.6-0.2,0-0.3l-75.1-20.5c-0.5-0.1-1-0.7-0.9-1.3l14-656c0-0.5-0.4-1-1-1h-18            c-0.6,0-0.9,0.4-0.8,1l0.7,4c0.1,0.5-0.3,1-0.8,0.9l-145-5.9c-0.5,0-1-0.5-1-1v-6c0-0.5-0.4-0.9-1-0.9l-15,1.8            c-0.5,0.1-1,0.6-1,1.1L2062,1512z"></path>
+            <path class="st2" ng-class="scheduleInfo['484d7ef596bc'].online?'green':'red'" d="M2062,1512c0,0.5-0.5,1-1,1.1l-76,5.8c-0.5,0-0.6,0.2,0,0.4l59.1,18.4c0.5,0.2,1.4,0.5,1.9,0.6l47.1,17.3            c0.5,0.2,1.4,0.3,1.9,0.3l229-16.9c0.5,0,0.6-0.2,0-0.3l-75.1-20.5c-0.5-0.1-1-0.7-0.9-1.3l14-656c0-0.5-0.4-1-1-1h-18            c-0.6,0-0.9,0.4-0.8,1l0.7,4c0.1,0.5-0.3,1-0.8,0.9l-145-5.9c-0.5,0-1-0.5-1-1v-6c0-0.5-0.4-0.9-1-0.9l-15,1.8            c-0.5,0.1-1,0.6-1,1.1L2062,1512z"></path>
+            <path class="st3" d="M2116,899c0-0.5,0.5-1,1-1l111,4.9c0.5,0,1,0.5,1,1l-5,234c0,0.5-0.5,1-1,1h-111c-0.6,0-1-0.4-1-1L2116,899z            "></path>
+            <path class="st4" d="M2116,899c0-0.5,0.5-1,1-1l111,4.9c0.5,0,1,0.5,1,1l-5,234c0,0.5-0.5,1-1,1h-111c-0.6,0-1-0.4-1-1L2116,899z            "></path>
+          </g>
+        </g>
+        <g id="kiosk04">
+          <g id="kiosk04_kiosk" ng-click="scheduleInfo['509a4c47879f'].online?setSelectedDemoKiosk('#kiosk04_kiosk .st1', '509a4c47879f', 'showroom10'):''">
+            <path class="st1" d="M1760,911.8c-0.5,0.1-1,0.7-1,1.2l-9,625c0,0.5-0.5,1-1,1.1l-70,5.8c-0.5,0-0.6,0.2-0.1,0.4l42.1,16.3            c0.5,0.2,1.3,0.6,1.8,0.8l35.2,17.1c0.5,0.2,1.3,0.4,1.9,0.4l235-17.8c0.5,0,0.6-0.2,0-0.4l-60.1-18.4c-0.5-0.2-1-0.7-0.9-1.3            l3-355c0-0.6,0-1.4,0-2l-14.9-272c0-0.5-0.5-1-1.1-1h-12c-0.6,0-1.1,0.4-1.1,1l-0.8,6c-0.1,0.5-0.6,1-1.1,1l-128,1            c-0.6,0-1-0.4-1.1-1l-0.8-11c0-0.5-0.5-0.9-1.1-0.8L1760,911.8z"></path>
+            <path class="st2" ng-class="scheduleInfo['509a4c47879f'].online?'green':'red'" d="M1760,911.8c-0.5,0.1-1,0.7-1,1.2l-9,625c0,0.5-0.5,1-1,1.1l-70,5.8c-0.5,0-0.6,0.2-0.1,0.4l42.1,16.3            c0.5,0.2,1.3,0.6,1.8,0.8l35.2,17.1c0.5,0.2,1.3,0.4,1.9,0.4l235-17.8c0.5,0,0.6-0.2,0-0.4l-60.1-18.4c-0.5-0.2-1-0.7-0.9-1.3            l3-355c0-0.6,0-1.4,0-2l-14.9-272c0-0.5-0.5-1-1.1-1h-12c-0.6,0-1.1,0.4-1.1,1l-0.8,6c-0.1,0.5-0.6,1-1.1,1l-128,1            c-0.6,0-1-0.4-1.1-1l-0.8-11c0-0.5-0.5-0.9-1.1-0.8L1760,911.8z"></path>
+            <path class="st3" d="M1806,979c0-0.5,0.4-1,1-1h89c0.6,0,1,0.4,1.1,1l9.9,178c0,0.5-0.4,1-0.9,1h-92c-0.6,0-1-0.4-1-1L1806,979z"></path>
+            <path class="st4" d="M1806,979c0-0.5,0.4-1,1-1h89c0.6,0,1,0.4,1.1,1l9.9,178c0,0.5-0.4,1-0.9,1h-92c-0.6,0-1-0.4-1-1L1806,979z"></path>
+          </g>
+        </g>
+        <g id="kiosk03">
+          <g id="kiosk03_kiosk">
+            <path class="st1" d="M1423,1575c0,0.6-0.5,1-1,1.1l-44,4.8c-0.5,0.1-0.6,0.3-0.1,0.5l18.1,7.3c0.5,0.2,1.3,0.7,1.7,1.1l15.5,14.6            c0.4,0.4,1.2,0.6,1.7,0.6l192-16.8c0.5,0,1-0.5,1-1.1v-2c0-0.6-0.4-1.2-0.9-1.4l-44.2-19.2c-0.5-0.2-0.9-0.8-0.9-1.4l6-665            c0-0.5-0.4-1-1-1h-10c-0.6,0-1.4,0-2,0h-110c-0.6,0-1-0.5-1-1v-4c0-0.5-0.4-1-1-0.9l-14,0.9c-0.5,0-1,0.5-1,1.1L1423,1575z"></path>
+            <path class="st2" d="M1423,1575c0,0.6-0.5,1-1,1.1l-44,4.8c-0.5,0.1-0.6,0.3-0.1,0.5l18.1,7.3c0.5,0.2,1.3,0.7,1.7,1.1l15.5,14.6            c0.4,0.4,1.2,0.6,1.7,0.6l192-16.8c0.5,0,1-0.5,1-1.1v-2c0-0.6-0.4-1.2-0.9-1.4l-44.2-19.2c-0.5-0.2-0.9-0.8-0.9-1.4l6-665            c0-0.5-0.4-1-1-1h-10c-0.6,0-1.4,0-2,0h-110c-0.6,0-1-0.5-1-1v-4c0-0.5-0.4-1-1-0.9l-14,0.9c-0.5,0-1,0.5-1,1.1L1423,1575z"></path>
+            <path class="st3" d="M1463,1035c0-0.6,0.4-1,1-1h73c0.6,0,1,0.4,1,1v59c0,0.6-0.4,1-1,1h-73c-0.6,0-1-0.4-1-1V1035z"></path>
+            <path class="st4" d="M1463,1035c0-0.6,0.4-1,1-1h73c0.6,0,1,0.4,1,1v59c0,0.6-0.4,1-1,1h-73c-0.6,0-1-0.4-1-1V1035z"></path>
+          </g>
+        </g>
+        <g id="kiosk02">
+          <g id="kiosk02_kiosk" ng-click="scheduleInfo['484d7ee93da9'].online?setSelectedDemoKiosk('#kiosk02_kiosk .st1', '484d7ee93da9', 'showroom7'):''">
+            <path class="st1" d="M1013.1,905c0-0.5,0.4-1,0.9-1.1l12-0.9c0.5,0,1,0.4,1,0.9v6c0,0.5,0.4,1,1,1l162,5.9c0.5,0,1-0.4,1-1v-5            c0-0.5,0.4-1,1-1h8c0.6,0,1.4,0,2,0h5c0.6,0,1,0.4,1.1,1l14.9,278c0,0.5,0.1,1.4,0.1,2l-1,403c0,0.6,0.4,1.2,0.9,1.4l50.2,23.2            c0.5,0.2,0.5,0.5-0.1,0.5l-246,22.8c-0.5,0.1-1.3-0.3-1.6-0.7l-11.8-16.4c-0.3-0.4-1-1-1.5-1.3l-37.2-20.1            c-0.5-0.3-0.4-0.5,0.1-0.6l71-7.8c0.5-0.1,0.6-0.3,0.1-0.6l-21.3-12c-0.5-0.3-0.9-0.9-0.9-1.5l5-390c0-0.5,0-1.4,0-2L1013.1,905z            "></path>
+            <path class="st2" ng-class="scheduleInfo['484d7ee93da9'].online?'green':'red'" d="M1013.1,905c0-0.5,0.4-1,0.9-1.1l12-0.9c0.5,0,1,0.4,1,0.9v6c0,0.5,0.4,1,1,1l162,5.9c0.5,0,1-0.4,1-1v-5            c0-0.5,0.4-1,1-1h8c0.6,0,1.4,0,2,0h5c0.6,0,1,0.4,1.1,1l14.9,278c0,0.5,0.1,1.4,0.1,2l-1,403c0,0.6,0.4,1.2,0.9,1.4l50.2,23.2            c0.5,0.2,0.5,0.5-0.1,0.5l-246,22.8c-0.5,0.1-1.3-0.3-1.6-0.7l-11.8-16.4c-0.3-0.4-1-1-1.5-1.3l-37.2-20.1            c-0.5-0.3-0.4-0.5,0.1-0.6l71-7.8c0.5-0.1,0.6-0.3,0.1-0.6l-21.3-12c-0.5-0.3-0.9-0.9-0.9-1.5l5-390c0-0.5,0-1.4,0-2L1013.1,905z            "></path>
+            <path class="st3" d="M1054.6,956.5c0-0.5,0.4-1,0.9-1l121,3.9c0.5,0,1,0.5,1.1,1l12.9,208c0,0.5-0.4,1-0.9,1h-122            c-0.6,0-1-0.4-1.1-1L1054.6,956.5z"></path>
+            <path class="st4" d="M1054.6,956.5c0-0.5,0.4-1,0.9-1l121,3.9c0.5,0,1,0.5,1.1,1l12.9,208c0,0.5-0.4,1-0.9,1h-122            c-0.6,0-1-0.4-1.1-1L1054.6,956.5z"></path>
+          </g>
+        </g>
+        <g id="kiosk01">
+          <g id="kiosk01_kiosk" ng-click="scheduleInfo['b88584abf538'].online?setSelectedDemoKiosk('#kiosk01_kiosk .st1', 'b88584abf538', 'showroom12'):''">
+            <path class="st1" d="M172.5,1083.5c0-0.5,0.4-1,1-1h546c0.5,0,1.1,0.4,1.2,1l32.7,196c0.1,0.5,0,1.4-0.2,1.9l-7.3,18.1            c-0.2,0.5-0.8,0.9-1.4,1l-168,5.9c-0.5,0-1,0.5-1,1l7,333c0,0.5,0.5,0.9,1,0.8l22-3.7c0.5-0.1,1.4-0.3,1.9-0.5l16.1-6.3            c0.5-0.2,1.4-0.4,1.9-0.4l133-10.8c0.5,0,1.3,0.2,1.7,0.6l43.6,42.6c0.4,0.4,0.3,0.8-0.3,0.8l-138,15.8c-0.5,0.1-1.4,0-2-0.1            l-30-5.6c-0.5-0.1-1.4-0.1-2-0.1l-289,27.8c-0.5,0.1-1.4,0.2-1.9,0.4l-32.1,11.3c-0.5,0.2-1.4,0.4-1.9,0.4l-159,15.8            c-0.5,0.1-1-0.4-1-0.9v-54c0-0.6,0.4-1.1,1-1.1l143-16.8c0.5-0.1,1.4,0,2,0.1l28.1,6.5c0.5,0.1,1.4,0.2,2,0.2l52-2.9            c0.5,0,1-0.5,1-1.1l-4-345c0-0.5-0.5-1-1-1l-193,6.9c-0.5,0-1-0.4-1-1L172.5,1083.5z"></path>
+            <path class="st2" ng-class="scheduleInfo['b88584abf538'].online?'green':'red'" d="M172.5,1083.5c0-0.5,0.4-1,1-1h546c0.5,0,1.1,0.4,1.2,1l32.7,196c0.1,0.5,0,1.4-0.2,1.9l-7.3,18.1            c-0.2,0.5-0.8,0.9-1.4,1l-168,5.9c-0.5,0-1,0.5-1,1l7,333c0,0.5,0.5,0.9,1,0.8l22-3.7c0.5-0.1,1.4-0.3,1.9-0.5l16.1-6.3            c0.5-0.2,1.4-0.4,1.9-0.4l133-10.8c0.5,0,1.3,0.2,1.7,0.6l43.6,42.6c0.4,0.4,0.3,0.8-0.3,0.8l-138,15.8c-0.5,0.1-1.4,0-2-0.1            l-30-5.6c-0.5-0.1-1.4-0.1-2-0.1l-289,27.8c-0.5,0.1-1.4,0.2-1.9,0.4l-32.1,11.3c-0.5,0.2-1.4,0.4-1.9,0.4l-159,15.8            c-0.5,0.1-1-0.4-1-0.9v-54c0-0.6,0.4-1.1,1-1.1l143-16.8c0.5-0.1,1.4,0,2,0.1l28.1,6.5c0.5,0.1,1.4,0.2,2,0.2l52-2.9            c0.5,0,1-0.5,1-1.1l-4-345c0-0.5-0.5-1-1-1l-193,6.9c-0.5,0-1-0.4-1-1L172.5,1083.5z"></path>
+            <path class="st3" d="M204.5,1100.5c0-0.5,0.4-1,1-1h495c0.5,0,1.1,0.4,1.2,1l27.7,167c0.1,0.5-0.3,1-0.8,1l-519,17.9            c-0.5,0-1-0.4-1-1L204.5,1100.5z"></path>
+            <path class="st4" d="M204.5,1100.5c0-0.5,0.4-1,1-1h495c0.5,0,1.1,0.4,1.2,1l27.7,167c0.1,0.5-0.3,1-0.8,1l-519,17.9            c-0.5,0-1-0.4-1-1L204.5,1100.5z"></path>
+          </g>
+        </g>
+        <g id="Labels">
+          <text class="st5 st6 st7" transform="matrix(1 0 0 1 1106.5371 1371.5986)">7</text>
+          <rect class="st8" x="434.6" y="1438.3" width="63.9" height="79"></rect>
+          <text class="st5 st6 st7" transform="matrix(1 0 0 1 434.5508 1500.251)">12</text>
+          <text class="st5 st6 st7" transform="matrix(1 0 0 1 1824.6235 1336.1895)">10</text>
+          <text class="st5 st6 st7" transform="matrix(1 0 0 1 2143.4111 1318.1143)">9</text>
+          <text class="st5 st6 st7" transform="matrix(1 0 0 1 2550.3389 1405.8896)">1</text>
+          <text class="st5 st6 st7" transform="matrix(1 0 0 1 2996.8447 1373.6455)">2</text>
+          <text class="st5 st6 st7" transform="matrix(1 0 0 1 3384.3457 1346.1348)">13</text>
+          <text class="st5 st6 st7" transform="matrix(1 0 0 1 3790.0586 1414.9111)">5</text>
+          <text class="st5 st6 st7" transform="matrix(1 0 0 1 5005.0977 1520.3672)">8</text>
+        </g>
+      </g>
+    </svg>
+    <md-content style="position:fixed;bottom:64px;right:0;left:0">
+      <md-progress-linear md-mode="indeterminate" ng-if="schedulesOnlineLoading"></md-progress-linear>
+      <div class="container" ng-if="!installDone || installError">
+        <md-progress-linear md-mode="indeterminate" ng-if="!installError"></md-progress-linear>
+        <div class="bottom-block" ng-if="!installError" layout="row" layout-align="center center">
+          <div>
+            <div class="md-title">{{installStep}}</div>
+            <div class="md-subhead">{{installDetails}}</div>
+          </div>
+        </div>
+        <div class="bottom-block" ng-if="installError"><span>{{installErrorText}}</span></div>
+      </div>
+    </md-content>
+    <md-toolbar layout="row" layout-align="center center" style="position:fixed;bottom:0">
+      <md-button class="md-fab md-mini" id="scheduleMenu" ng-click="installDemoApplication('app-wifi')" ng-disabled="!installDone">
+        <md-icon class="material-icons">wifi</md-icon>
+      </md-button>
+      <md-button class="md-fab md-mini" id="scheduleMenu" ng-click="installDemoApplication('app-rotate')" ng-disabled="!installDone">
+        <md-icon class="material-icons">screen_rotation</md-icon>
+      </md-button>
+      <md-button class="md-fab md-mini" id="scheduleMenu" ng-click="installDemoApplication('app-lights')" ng-disabled="!installDone">
+        <md-icon class="material-icons">wb_sunny</md-icon>
+      </md-button>
+      <md-button class="md-fab md-mini" id="scheduleMenu" ng-click="restoreSelectedDemoKiosk()" ng-disabled="!installDone">
+        <md-icon class="material-icons">restore</md-icon>
+      </md-button>
+    </md-toolbar>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-cookies.min.js"></script>
+    <script src="vendor/angular-material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/yamljs/0.3.0/yaml.min.js"></script>
+    <script src="config.js" type="text/javascript"></script>
+    <script src="crypto.js" type="text/javascript"></script>
+    <script src="vendor/angular-jwt.min.js"></script>
+    <script src="vendor/oboe-browser.js"></script>
+    <script src="vendor/angular-oboe.min.js"></script>
+    <script src="vendor/markdown-it.min.js"></script>
+    <script src="vendor/tinycolor.js"></script>
+    <script src="vendor/mdColorPicker.js"></script>
+    <script src="init.js" defer></script>
+    <script src="directives/chooseFile.directive.js" defer></script>
+    <script src="directives/markdown.directive.js" defer></script>
+    <script src="factories/firestore.user.directive.js" defer></script>
+    <script src="app.controller.js" type="text/javascript" defer></script>
+  </body>
+</html>

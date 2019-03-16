@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width">
+    <title>ZIVELO SHOWROOM</title>
+    <link rel="stylesheet" href="vendor/angular-material.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|IBM+Plex+Sans+Condensed:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="admin.css">
+    <link type="text/css" rel="stylesheet" href="vendor/mdColorPicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  </head>
+  <body ng-app="showroomApp" ng-controller="appController" ng-cloak="">
+    <div layout="column" layout-fill="">
+      <md-toolbar> 
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+          <md-button class="md-fab md-mini" id="scheduleMenu" ng-click="toggleLeft()" hide-gt-md="">
+            <md-icon class="material-icons">menu </md-icon>
+          </md-button>
+          <h2 md-truncate="" flex=""> <a ng-click="goHome()">SCHEDULE ADMINISTRATOR</a></h2>
+          <div class="md-input-container" layout="row" layout-align="end center">
+            <md-button ng-if="showDemoButton" ng-cloak=""><a href="/{{api.customClaims.domain}}.html" target="_blank">Demo</a></md-button><a style="color:#ffffff;cursor:pointer" ng-click="goHome()" ng-if="isLoggedIn" ng-cloak="">
+              <md-icon class="material-icons">help </md-icon></a>
+            <md-button ng-click="logout()" ng-if="isLoggedIn" ng-cloak="">Logout </md-button>
+          </div>
+        </div>
+      </md-toolbar>
+      <div ng-if="isLoggedIn" style="height:100%;overflow:hidden" layout="row">
+        <md-sidenav class="md-sidenav-left" md-component-id="left" layout="column" layout-align="top left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+          <md-toolbar md-colors="{background: 'default-primary-100'}" layout="row" layout-align="space-between">
+            <div class="md-toolbar-tools"> 
+              <md-input-container>
+                <md-button class="md-fab md-mini" id="addSchedule" ng-click="showAddSchedulePrompt($event)" ng-disabled="showAuthForm">
+                  <md-icon class="material-icons">add</md-icon>
+                </md-button>
+              </md-input-container><span class="md-headline">Schedules</span>
+            </div>
+          </md-toolbar>
+          <md-content layout-padding="" ng-show="!scheduleFormOpen">
+            <md-radio-group class="scheduleList" ng-model="settings.selectedSchedule">
+              <div class="row" ng-repeat="schedule in schedules | orderBy: 'name'">
+                <div flex="" layout="row" layout-padding layout-align="space-between center">
+                  <md-radio-button class="md-primary" flex="" ng-value="schedule" ng-click="checkSideBar();" ng-disabled="showAuthForm">{{formatScheduleName(schedule.name)}}</md-radio-button>
+                  <md-button class="md-fab md-mini" id="clearScheduleButton" ng-click="showScheduleConfirm($event, schedule.name)" ng-disabled="showAuthForm">
+                    <md-icon class="material-icons">clear</md-icon>
+                  </md-button>
+                </div>
+                <md-divider> </md-divider>
+              </div>
+            </md-radio-group>
+          </md-content>
+        </md-sidenav>
+        <div layout="column" layout-fill="" flex="" layout-padding="">
+          <div layout="column" layout-fill="" ng-if="settings.selectedSchedule">
+            <div layout="row" layout-align="space-between center" style="min-height: 50px">
+              <h1>{{formatScheduleName(settings.selectedSchedule.name)}}</h1>
+              <md-button class="md-fab md-mini" id="uploadButton" ng-click="saveSchedule(settings.selectedSchedule)">
+                <md-icon class="material-icons">save </md-icon>
+              </md-button>
+            </div>
+            <md-tabs layout="column" layout-fill="" md-selected="selectedTabIndex.tabIndex" md-align-tabs="top">
+              <md-tab layout="column" layout-fill="" id="tab1" md-tab-class="selector-tab1">
+                <md-tab-label>Calendar Data</md-tab-label>
+                <md-tab-body>
+                  <div layout-padding layout="column" layout-fill flex-gt-sm="50"> 
+                    <div layout="column">
+                      <h2>Calendar File (*.ics)</h2>
+                      <md-input-container class="md-block" flex-gt-sm>
+                        <choose-file layout="row" layout-align="left center" flex="100" id="{{settings.selectedSchedule.name + '-directive-' + $index" index="{{$index}}" file-input-id="{{settings.selectedSchedule.name + '-' + $index}}">
+                          <input class="ng-hide" ng-attr-id="{{settings.selectedSchedule.name + '-' + $index}}" type="file" accept="text/calendar">
+                          <md-button class="md-fab md-mini" id="uploadButton">
+                            <md-icon class="material-icons">image</md-icon>
+                          </md-button>
+                          <md-input-container class="md-block" flex>
+                            <input type="text" ng-model="settings.selectedSchedule.fileName" disabled>
+                          </md-input-container>
+                        </choose-file>
+                      </md-input-container>
+                      <h2>Calendar Url (*.ics)</h2>
+                      <md-input-container class="md-block" flex-gt-sm>
+                        <div layout="row" layout-align="left center" layout-fill flex="100">
+                          <md-button class="md-fab md-mini" id="uploadButton" ng-click="addCalendarSubscriptionForUser(user,settings.selectedSchedule)">
+                            <md-icon class="material-icons">web_asset</md-icon>
+                          </md-button>
+                          <input type="text" ng-model="settings.selectedSchedule.calendarUrl">
+                        </div>
+                      </md-input-container>
+                      <pre style="text-align:left">{{settings.selectedSchedule.events | json}}</pre>
+                    </div>
+                    <p> </p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                  </div>
+                </md-tab-body>
+              </md-tab>
+              <md-tab layout="column" layout-fill="" id="tab2" md-tab-class="selector-tab2">
+                <md-tab-label>Today Schedule</md-tab-label>
+                <md-tab-body>
+                  <div layout-padding layout="column" layout-fill flex-gt-sm="50"> 
+                    <div class="md-headline" ng-bind="getTodayDate()"></div>
+                    <md-list>
+                      <md-list-item ng-repeat="item in settings.selectedSchedule.events " layout="column" layout-align="top left"> 
+                        <div>{{item.summary}}</div>
+                        <div> <span>{{item.start | date:"h:mma"}} </span><span ng-if="item.start !== item.end">- {{item.end | date:"h:mma"}}</span></div>
+                      </md-list-item>
+                    </md-list>
+                    <p> </p>
+                    <p></p>
+                    <p></p>
+                  </div>
+                </md-tab-body>
+              </md-tab>
+            </md-tabs>
+          </div>
+          <div layout="column" layout-fill="" ng-if="!settings.selectedSchedule">
+            <md-content>
+              <div class="markdown" data-markdown="" link="env.md"></div>
+              <div ng-if="showAuthForm">
+                <div>Since you need to make calls to the Dashboard API you will need a token by loging in below</div>
+                <form autocomplete="off" name="authForm">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Dashboard Email</label>
+                    <input ng-model="user.dashboardEmail" type="email" autocomplete="nope" required>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Dashboard Password</label>
+                    <input ng-model="user.dashboardPassword" type="password" autocomplete="nope" required>
+                  </md-input-container>
+                  <md-button ng-click="getAuthToken(user, authForm)">Login</md-button>
+                </form>
+              </div>
+              <div ng-if="!showAuthForm">
+                <div class="markdown" data-markdown="" link="login.md"></div>
+                <md-button ng-click="removeAuthToken()">Remove Dashboard Login</md-button>
+              </div>
+            </md-content>
+          </div>
+        </div>
+      </div>
+      <div id="firebaseui-auth-container"></div>
+    </div>
+    <div id="loadingPanel" ng-show="imageIsUploading"> 
+      <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-cookies.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.3.0/angular-moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.3.0/angular-moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/yamljs/0.3.0/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.3.0/ical.js"></script>
+    <script src="config.js" type="text/javascript"></script>
+    <script src="crypto.js" type="text/javascript"></script>
+    <script src="vendor/angular-material.min.js"></script>
+    <script src="vendor/ical2json.js"></script>
+    <script src="vendor/angular-jwt.min.js"></script>
+    <script src="vendor/oboe-browser.js"></script>
+    <script src="vendor/angular-oboe.min.js"></script>
+    <script src="vendor/markdown-it.min.js"></script>
+    <script src="vendor/tinycolor.js"></script>
+    <script src="vendor/mdColorPicker.js"></script>
+    <script src="init.js" defer></script>
+    <script src="directives/chooseFile.directive.js" defer></script>
+    <script src="directives/markdown.directive.js" defer></script>
+    <script src="factories/firestore.user.directive.js" defer></script>
+    <script src="app.controller.js" type="text/javascript" defer></script>
+  </body>
+</html>
