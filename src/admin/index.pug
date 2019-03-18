@@ -1,53 +1,53 @@
 doctype html
 html
-  include includes/head.pug
+  include includes/head.pug 
   body(ng-app="showroomApp" ng-controller="appController" ng-cloak="")
     div(layout="column" layout-fill="")
       md-toolbar 
         .md-toolbar-tools(layout="row" layout-align="space-between center" )
           md-button#scheduleMenu.md-fab.md-mini(ng-click="toggleLeft()" hide-gt-md="")
-            md-icon.material-icons menu 
-          h2(md-truncate="" flex="") 
+            md-icon.material-icons menu
+          h2(md-truncate="" flex="")
             a(ng-click="goHome()") SCHEDULE ADMINISTRATOR
           .md-input-container(layout="row" layout-align="end center")
-            md-button( ng-if="showDemoButton" ng-cloak="")
-              a(href="/{{api.customClaims.domain}}.html" target="_blank") Demo
             a(style="color:#ffffff;cursor:pointer" ng-click="goHome()" ng-if="isLoggedIn" ng-cloak="")
-              md-icon.material-icons help 
+              md-icon.material-icons help
             md-button(ng-click="logout()" ng-if="isLoggedIn" ng-cloak="")
               | Logout 
       div(ng-if="isLoggedIn" style="height:100%;overflow:hidden" layout="row")
           md-sidenav.md-sidenav-left(md-component-id="left" layout="column" layout-align="top left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4")
             md-toolbar(md-colors="{background: 'default-primary-100'}" layout="row" layout-align="space-between")
-              .md-toolbar-tools 
-                md-input-container
+              .md-toolbar-tools
+                md-input-container 
                   md-button#addSchedule.md-fab.md-mini(ng-click="showAddSchedulePrompt($event)" ng-disabled="showAuthForm")
-                    md-icon.material-icons add
-                span.md-headline Schedules
+                    md-icon.material-icons add 
+                span.md-headline Schedules 
             md-content(layout-padding="" ng-show="!scheduleFormOpen")
               md-radio-group.scheduleList(ng-model="settings.selectedSchedule")
                 .row(ng-repeat="schedule in schedules | orderBy: 'name'")
                   div(flex="" layout="row" layout-padding layout-align="space-between center")
-                    md-radio-button.md-primary(flex="" ng-value="schedule" ng-click="checkSideBar();" ng-disabled="showAuthForm")
+                    md-radio-button.md-primary(flex="" ng-value="schedule" ng-click="checkSideBar();")
                       | {{formatScheduleName(schedule.name)}}
-                    md-button#clearScheduleButton.md-fab.md-mini(ng-click="showScheduleConfirm($event, schedule.name)"  ng-disabled="showAuthForm")
-                      md-icon.material-icons clear
-                  md-divider 
+                    md-button#clearScheduleButton.md-fab.md-mini(ng-click="showScheduleConfirm($event, schedule.name)")
+                      md-icon.material-icons clear 
+                  md-divider
           div(layout="column" layout-fill="" flex="" layout-padding="")
             div(layout="column" layout-fill="" ng-if="settings.selectedSchedule")
               div(layout="row" layout-align="space-between center" style="min-height: 50px")
                   h1 {{formatScheduleName(settings.selectedSchedule.name)}}
-                  md-button#uploadButton.md-fab.md-mini(ng-click="saveSchedule(settings.selectedSchedule)")
-                    md-icon.material-icons save 
+                  //- md-button#uploadButton.md-fab.md-mini(ng-click="saveSchedule(settings.selectedSchedule)")
+                  //-   md-icon.material-icons save 
               md-tabs(layout="column" layout-fill=""  md-selected="selectedTabIndex.tabIndex" md-align-tabs="top" )
                 md-tab(layout="column" layout-fill=""  id="tab1" md-tab-class="selector-tab1")
-                  include includes/settings.pug  
+                  include includes/settings.pug
                 md-tab(layout="column" layout-fill=""  id="tab2" md-tab-class="selector-tab2")
-                  include includes/today.pug 
+                  include includes/today.pug
+                md-tab(layout="column" layout-fill=""  id="tab2" md-tab-class="selector-tab2")
+                  include includes/tomorrow.pug 
             div(layout="column" layout-fill="" ng-if="!settings.selectedSchedule")
               include includes/intro.pug 
-      #firebaseui-auth-container
-    #loadingPanel(ng-show="imageIsUploading") 
+      #firebaseui-auth-container 
+    #loadingPanel(ng-show="imageIsUploading")
       div(layout="row" layout-sm="column" layout-align="space-around")
         md-progress-circular(md-mode="indeterminate")
     include includes/foot.pug 

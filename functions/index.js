@@ -9,17 +9,33 @@ const cors = require('cors')({
 });
 
 function parseIcal(data) {
-  var jcalData = ICAL.parseICS(data);
+  console.log("###########################", new Date(), "###########################")
+  let type = 'apple/office'
+  if(data.indexOf('Google') > -1) {
+    type='google'
+  }
+  var jcalData = ICAL.parseICS(data)
   var events = []
   for(var i in jcalData){
     let event = {}
     if(jcalData[i].type.toLowerCase() === 'vevent') {
-      events.push({
-        start: jcalData[i].start.toISOString(),
-        end: jcalData[i].end.toISOString(),
-        summary: jcalData[i].summary || '',
-        description: jcalData[i].description ||''
-    })
+      if(type !== 'google'){
+        events.push({
+          type: type,
+          start: jcalData[i].start.toLocaleString('en-US', { timeZone: 'UTC' }),
+          end: jcalData[i].end.toLocaleString('en-US', { timeZone: 'UTC' }),
+          summary: jcalData[i].summary || '',
+          description: jcalData[i].description ||''
+        })
+      } else {
+        events.push({
+          type: type,
+          start: jcalData[i].start.toISOString(),
+          end: jcalData[i].end.toISOString(),
+          summary: jcalData[i].summary || '',
+          description: jcalData[i].description ||''
+        })
+      }
     }
   }
   return events
@@ -27,7 +43,7 @@ function parseIcal(data) {
 
 exports.convertIcs2Json = functions.https.onRequest((request, response) => {
   console.log("Request: ", request.body.ics)
-  var jsonData = ical2json.convert(request.body.ics);
+  var jsonData = ICAL.parseICS(request.body.ics);
   response.json(jsonData);
   //response.send("Hello from convertIcs2Json!");
 });
@@ -53,7 +69,7 @@ exports.addCalendarSubscriptionForUser = functions.https.onRequest((req, res) =>
       user: kbody.user
     }
     console.log("setData: ", setData)
-    admin.firestore().collection('subscriptions').doc(kbody.user).set(setData).then( function () {
+    admin.firestore().collection('subscriptions').doc(kbody.user).collection('schedules').doc(kbody.name).set(setData).then( function () {
       res.send("Subscription Written: ")
         let events = []
         request({
@@ -73,38 +89,51 @@ exports.addCalendarSubscriptionForUser = functions.https.onRequest((req, res) =>
   });
 });
 
-exports.updateUserScheduleSubscriptions = functions.https.onRequest((req, res) => {
-  cors(req, res, () => {
-    let subscriptions = []
-    admin.firestore().collection('subscriptions').get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        subscriptions.push({
-          name: doc.data().name,
-          url: doc.data().url,
-          user: doc.data().user
-        })
-      })
-      // go and get all of the new subscriptions and then update the firebase data
-      for (let i in subscriptions){
-        request({
-          method: 'GET',
-          uri: subscriptions[i].url,
-          followAllRedirects: true
-        }, function (error, response, body) {
-          if (error) {
-            return console.error('request failed:', error);
-          }
-          let eventsParsed = parseIcal(body)
-          //console.log('Upload successful!  Server responded with:',body);
-          admin.firestore().collection('users').doc(subscriptions[i].user).collection('schedules').doc(subscriptions[i].name).update({
-            events: eventsParsed
-          })
-        })
-
+function updateSubscription(subscription){
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'GET',
+      uri: subscription.url + '?time=' + Date.now(),
+      followAllRedirects: true
+    }, function (error, response, body) {
+      if (error) {
+        console.error('request failed:', error);
+        return reject(error)
       }
-
-      console.log("subscriptions", JSON.stringify(subscriptions, null, 4))
-      res.json(subscriptions)
+      let eventsParsed = parseIcal(body)
+      console.log('Parse successful!', eventsParsed);
+      admin.firestore().collection('users').doc(subscription.user).collection('schedules').doc(subscription.name).update({
+        events: eventsParsed
+      }).then(
+        function(){
+          console.log("Updated: ",subscription.name)
+          resolve()
+        },
+        function (err) {
+          reject(err)
+        } 
+      )
     })
-  });
-});
+  })
+}
+
+exports.updateUserScheduleSubscriptions = functions.https.onRequest((req, res) => {
+  cors(req, res,async function () {
+    const subscriptions = await admin.firestore().collection('subscriptions').get()
+    
+    const subscriptionsArray = []
+    for (const user in subscriptions.docs) {
+      const schedules = await subscriptions.docs[user].ref.collection('schedules').get()
+        for (const schedule in schedules.docs) {
+          const data = await schedules.docs[schedule].data()
+          subscriptionsArray.push(data)
+        }
+    }
+    
+    for(var subscription in subscriptionsArray){
+      await updateSubscription(subscriptionsArray[subscription])
+    }
+    console.log('done with everything')
+    res.status(200).send(subscriptionsArray)
+  })
+})

@@ -1,0 +1,14 @@
+md-tab-label Tomorrow's Schedule
+md-tab-body
+  div(layout-padding layout="column" layout-fill  flex-gt-sm="50") 
+    div.md-headline(ng-bind="getTomorrowDate()")
+    md-list()
+      md-list-item(ng-repeat="item in settings.selectedSchedule.events | filter : tomorrowFilter | orderBy : sortStartDate : false" layout="column" layout-align="top left" ) 
+        div() {{item.summary}}
+        div(ng-if="formatUtcDateString(item.start,'hh:mm') !== formatUtcDateString(item.end,'hh:mm')")
+          span {{formatUtcDateString(item.start,'hh:mm')}} 
+          span - {{formatUtcDateString(item.end,'hh:mm')}}
+        div(ng-if="formatUtcDateString(item.start,'hh:mm') === formatUtcDateString(item.end,'hh:mm')") All Day
+    p 
+    p
+    p

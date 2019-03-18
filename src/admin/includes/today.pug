@@ -1,20 +1,15 @@
-md-tab-label Today Schedule
+md-tab-label Today's Schedule
 md-tab-body
   div(layout-padding layout="column" layout-fill  flex-gt-sm="50") 
     div.md-headline(ng-bind="getTodayDate()")
     md-list()
-      md-list-item(ng-repeat="item in settings.selectedSchedule.events " layout="column" layout-align="top left" ) 
-        //- ng-hide="getShortDate(item.start) !== getTodayDate()")
+      md-list-item(ng-repeat="item in settings.selectedSchedule.events | filter : todayFilter | orderBy : sortStartDate : false" layout="column" layout-align="top left" ) 
+
         
         div() {{item.summary}}
         div 
-          span {{item.start | date:"h:mma"}} 
-          span(ng-if="item.start !== item.end") - {{item.end | date:"h:mma"}}
-
-
-
-
-      //- pre(style="text-align:left") {{settings.selectedSchedule | json}}
+          span {{formatUtcDateString(item.start,'hh:mm')}} 
+          span(ng-if="item.start !== item.end") - {{formatUtcDateString(item.end,'hh:mm')}}
     p 
     p
     p

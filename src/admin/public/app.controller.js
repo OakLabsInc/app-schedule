@@ -106,6 +106,12 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
     })
       .then(function () {
         $log.info('User written ')
+        db.collection('subscriptions').doc(user.uid).set({
+          'uid': user.uid,
+          'displayName': user.displayName,
+          'photoURL': user.photoURL,
+          'email': user.email
+        })
       })
       .catch(function (error) {
         console.error('Error adding User: ', error)
@@ -219,6 +225,7 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
     $scope.showAuthForm = true
     $scope.showDemoButton = false
   }
+ 
 
   $scope.getFirebaseUserSchedules = function () {
     $scope.schedules = []
@@ -301,23 +308,24 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
   }
 
   $scope.addCalendarSubscriptionForUser = function (user, selectedCalendar) {
-    let local = "http://localhost:5001/oak-schedule/us-central1/addCalendarSubscriptionForUser"
+    $scope.installInProgress = true
+    //let local = "http://localhost:5001/oak-schedule/us-central1/addCalendarSubscriptionForUser"
     let remote = "https://us-central1-oak-schedule.cloudfunctions.net/addCalendarSubscriptionForUser"
     if(selectedCalendar.calendarUrl){
-
+      selectedCalendar.calendarUrl = selectedCalendar.calendarUrl.replace('webcal','http')
       selectedCalendar.user = user.uid
 
       var req = {
         method: 'POST',
-        url: local,
+        url: remote,
         data: selectedCalendar
        }
       $http(req).then(
         function(success){
-          $log.error("Calendar Subscription Success: ", success)
+          $log.info("Calendar Subscription Success: ", success)
           $timeout(function(){
-            $scope.getFirebaseUserSchedules()
-            $scope.goHome()
+            //$scope.getFirebaseUserSchedules()
+            $scope.saveSchedule($scope.settings.selectedSchedule)
           })
         }, function(error){
           $log.error("Calendar Subscription  Error: ", error)
@@ -375,7 +383,10 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
   $scope.formatScheduleName = function(name) {
     return _.startCase(name)
   }
-
+  $scope.sortStartDate = function(item){
+    var date = new Date(item.start);
+    return date;
+  }
   $scope.saveSchedule = function (schedule) {
     
     let newSchedule = JSON.parse(angular.toJson( schedule ))
@@ -384,6 +395,7 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
         $log.info('Schedule written ')
         $timeout(function () {
           $log.info('Schedules: ', $scope.schedules)
+          $scope.installInProgress = false
         })
         $mdToast.show(
           $mdToast.simple()
@@ -405,7 +417,7 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
             .toastClass("error-toast"))
       })
   }
-
+  
   $scope.updateUser = function (user, authForm) {
     if(authForm.$valid) {
       db.collection('users').doc($scope.user.uid).set({
@@ -449,6 +461,11 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
           } else {
             window.location.href = "/"
           }
+        })
+        db.collection('subscriptions').doc($scope.user.uid).collection('schedules').delete().then(function(){
+          $log.info("User Subscription removed: ", $scope.user.uid)
+        }).catch(function (error) {
+          $log.error("User Subscription removal error: ", error)
         })
       }).catch(function (error) {
         console.error('Error removing document: ', error)
@@ -648,13 +665,25 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
     return $filter('date')(fullDate, "MM/dd/yyyy")
   }
   $scope.getTodayDate = function(){
-    return $filter('date')(Date.now(), "MM/dd/yyyy")
+    return moment(Date.now()).format("MM-DD-YYYY")
+  }
+  $scope.getTomorrowDate = function(){
+    return moment(Date.now()).add(1,'days').format("MM-DD-YYYY")
+  }
+  $scope.formatUtcDateString = function(date, format, type) {
+    return moment(date).format(format)
+  }
+  $scope.todayFilter = function(item) {
+    return moment(item.start).format("MM-DD-YYYY") === moment(Date.now()).format("MM-DD-YYYY") || moment(item.end).format("MM-DD-YYYY") === moment(Date.now()).format("MM-DD-YYYY")
   }
 
-  $scope.initApp = function () {
-    $scope.validateAuthToken()
+  $scope.tomorrowFilter = function(item) {
+    return moment(item.start).format("MM-DD-YYYY") === moment(Date.now()).add(1,'days').format("MM-DD-YYYY") || (moment(item.start).format("MM-DD-YYYY") === moment(Date.now()).add(1,'days').format("MM-DD-YYYY") &&  moment(item.end).format("MM-DD-YYYY") === moment(Date.now()).add(2,'days').format("MM-DD-YYYY"))
   }
+  // $scope.initApp = function () {
+  //   $scope.validateAuthToken()
+  // }
 
-  $scope.initApp()
+  // $scope.initApp()
 
 })

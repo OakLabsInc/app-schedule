@@ -1,24 +1,25 @@
-md-tab-label Calendar Data
+md-tab-label Calendar Subscription
 md-tab-body
+  md-progress-linear(md-mode="indeterminate" ng-if="installInProgress")
   div(layout-padding layout="column" layout-fill  flex-gt-sm="50") 
     div(layout="column" )
-      h2 Calendar File (*.ics)
-      md-input-container(class="md-block" flex-gt-sm)
-        choose-file(layout="row" layout-align="left center" flex="100" id="{{settings.selectedSchedule.name + '-directive-' + $index" index="{{$index}}" file-input-id="{{settings.selectedSchedule.name + '-' + $index}}")
-          input(ng-attr-id="{{settings.selectedSchedule.name + '-' + $index}}" type="file" accept="text/calendar" class="ng-hide")
-          md-button.md-fab.md-mini(id="uploadButton" class="")
-            md-icon(class="material-icons") image
-          md-input-container(flex class="md-block")
-            input(type="text" ng-model="settings.selectedSchedule.fileName" disabled)
-      h2 Calendar Url (*.ics)
+      //- h2 Calendar File (*.ics)
+      //- md-input-container(class="md-block" flex-gt-sm)
+      //-   choose-file(layout="row" layout-align="left center" flex="100" id="{{settings.selectedSchedule.name + '-directive-' + $index" index="{{$index}}" file-input-id="{{settings.selectedSchedule.name + '-' + $index}}")
+      //-     input(ng-attr-id="{{settings.selectedSchedule.name + '-' + $index}}" type="file" accept="text/calendar" class="ng-hide")
+      //-     md-button.md-fab.md-mini(id="uploadButton" class="")
+      //-       md-icon(class="material-icons") image
+      //-     md-input-container(flex class="md-block")
+      //-       input(type="text" ng-model="settings.selectedSchedule.fileName" disabled)
+      h2 Subscription Url (*.ics)
       md-input-container(class="md-block" flex-gt-sm)
         div( layout="row" layout-align="left center" layout-fill flex="100")
           md-button.md-fab.md-mini(id="uploadButton" class="" ng-click="addCalendarSubscriptionForUser(user,settings.selectedSchedule)")
-            md-icon(class="material-icons") web_asset
+            md-icon(class="material-icons") save
           input(type="text" ng-model="settings.selectedSchedule.calendarUrl" )
 
 
-      pre(style="text-align:left") {{settings.selectedSchedule.events | json}}
+      //- pre(style="text-align:left") {{settings.selectedSchedule.events | json}}
     p 
     p
     p
