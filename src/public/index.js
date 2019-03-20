@@ -5,7 +5,7 @@ window.reload = function () {
 }
 
 var app = window.angular
-  .module('scheduleApp', [])
+  .module('scheduleApp', ['ngMaterial'])
   .constant('os', window.os)
   .constant('oak', window.oak)
   .constant('_', window._)

@@ -2,9 +2,25 @@ head
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0')
 
-  link(href='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css', rel='stylesheet', type='text/css')
+
+  link(href='/vendor/angular-material.min.css', rel='stylesheet', type='text/css')
   link(href='/index.css', rel='stylesheet', type='text/css')
+  link(href='/vendor/demo.css', rel='stylesheet', type='text/css')
   script(src="/vendor/firebase.min.js")
 
-  script(src="config.js")
-    
+  script.
+    var app = firebase.initializeApp({
+      apiKey: "AIzaSyDr_LrNrgPwZXtSTXScZJ3DvMB-gmP2hec",
+      authDomain: "oak-schedule.firebaseapp.com",
+      databaseURL: "https://oak-schedule.firebaseio.com",
+      projectId: "oak-schedule",
+      storageBucket: "oak-schedule.appspot.com",
+      messagingSenderId: "1046369340167"
+    });
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+    // Disable deprecated features
+    db.settings({
+      timestampsInSnapshots: true
+    });
