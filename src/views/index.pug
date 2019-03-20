@@ -1,0 +1,14 @@
+doctype html
+html
+  include head.pug
+  body(ng-app='scheduleApp', ng-controller='appController', ng-cloak)
+    div( style="text-align:center")
+      div.md-display-2(ng-cloak) {{schedule.name}}
+      div.md-headline(ng-bind="getTodayDate()" ng-cloak)
+      div.list
+        div.list-item( style="display:flex;justify-content:space-between;align-items:center" ng-repeat="event in events | filter : todayFilter | orderBy : sortStartDate : false")
+          div {{event.summary}}
+          div {{ formatDateString(event.start,'hh:mm') }} - {{ formatDateString(event.end,'hh:mm' )}}
+
+
+    include footer.pug
