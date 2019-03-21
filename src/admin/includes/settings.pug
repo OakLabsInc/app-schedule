@@ -3,12 +3,16 @@ md-tab-body
   md-progress-linear(md-mode="indeterminate" ng-if="installInProgress")
   div(layout-padding layout="column" layout-fill  flex-gt-sm="50") 
     div(layout="column" )
+      
       h2 Subscription Url (*.ics)
       md-input-container(class="md-block" flex-gt-sm)
         div( layout="row" layout-align="left center" layout-fill flex="100")
           md-button.md-fab.md-mini(id="uploadButton" class="" ng-click="addCalendarSubscriptionForUser(user,settings.selectedSchedule)")
             md-icon(class="material-icons") save
           input(type="text" ng-model="settings.selectedSchedule.calendarUrl" )
+
+      h2 Install Snippet
+      .markdown(data-markdown="" link="/markdown/selected-install.md") 
     p 
     p
     p

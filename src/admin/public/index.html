@@ -22,7 +22,7 @@
           <h2 md-truncate="" flex=""><a ng-click="goHome()">SCHEDULE ADMINISTRATOR</a></h2>
           <div class="md-input-container" layout="row" layout-align="end center"><a style="color:#ffffff;cursor:pointer" ng-click="goHome()" ng-if="isLoggedIn" ng-cloak="">
               <md-icon class="material-icons">help</md-icon></a>
-            <md-button ng-click="logout()" ng-if="isLoggedIn" ng-cloak="">Logout</md-button>
+            <md-button ng-click="logout()" ng-if="isLoggedIn" ng-cloak="">Logout </md-button>
           </div>
         </div>
       </md-toolbar>
@@ -30,9 +30,9 @@
         <md-sidenav class="md-sidenav-left" md-component-id="left" layout="column" layout-align="top left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
           <md-toolbar md-colors="{background: 'default-primary-100'}" layout="row" layout-align="space-between">
             <div class="md-toolbar-tools">
-              <md-input-container> 
+              <md-input-container>
                 <md-button class="md-fab md-mini" id="addSchedule" ng-click="showAddSchedulePrompt($event)" ng-disabled="showAuthForm">
-                  <md-icon class="material-icons">add </md-icon>
+                  <md-icon class="material-icons">add</md-icon>
                 </md-button>
               </md-input-container><span class="md-headline">Schedules</span>
             </div>
@@ -72,6 +72,8 @@
                           <input type="text" ng-model="settings.selectedSchedule.calendarUrl">
                         </div>
                       </md-input-container>
+                      <h2>Install Snippet</h2>
+                      <div class="markdown" data-markdown="" link="/markdown/selected-install.md"> </div>
                     </div>
                     <p> </p>
                     <p></p>

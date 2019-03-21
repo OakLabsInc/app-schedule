@@ -5,7 +5,7 @@
 
 email: {{$parent.user.email}}
 
-api key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+api key: `{{$parent.user.uid}}`
 
 ## What this is
 
@@ -50,7 +50,7 @@ http://dashboard/api/v5/machine/xxxxxxxxxx/application/install?streaming=true&ti
 {
   "services": [
     {
-      "image": "index.docker.io/oaklabs/app-schedule:1.0.0",
+      "image": "index.docker.io/oaklabs/app-schedule:release-1.0.0",
       "environment": {
         "API_KEY": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
         "SCHEDULE_NAME": "google_calendar",
