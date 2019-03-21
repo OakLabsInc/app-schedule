@@ -8,8 +8,8 @@ md-tab-body
         
         div() {{item.summary}}
         div 
-          span {{formatUtcDateString(item.start,'hh:mm')}} 
-          span(ng-if="item.start !== item.end") - {{formatUtcDateString(item.end,'hh:mm')}}
+          span {{formatUtcDateString(item.start,'hh:mm a')}} 
+          span(ng-if="item.start !== item.end") - {{formatUtcDateString(item.end,'hh:mm a')}}
     p 
     p
     p

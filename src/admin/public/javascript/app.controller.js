@@ -462,11 +462,12 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
             window.location.href = "/"
           }
         })
-        db.collection('subscriptions').doc($scope.user.uid).collection('schedules').delete().then(function(){
+        db.collection('subscriptions').doc($scope.user.uid).collection('schedules').doc(scheduleName).delete().then(function(){
           $log.info("User Subscription removed: ", $scope.user.uid)
         }).catch(function (error) {
           $log.error("User Subscription removal error: ", error)
         })
+        
       }).catch(function (error) {
         console.error('Error removing document: ', error)
       })

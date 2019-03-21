@@ -1,3 +1,19 @@
 md-content
-  .markdown(data-markdown="" link="intro.md")
-  
+  .markdown(data-markdown="" link="/markdown/intro.md") 
+  p &nbsp;
+  md-tabs(md-dynamic-height)
+    md-tab(label="Adding Calendar Subscription")
+      div(class="md-padding" layout-fill)
+        .markdown(data-markdown="" link="/markdown/add-calendar.md")
+        iframe(width="560" height="315" src="https://www.youtube.com/embed/k6GAj10vhPU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+    md-tab(label="Using Other Calendars")
+      div(class="md-padding")
+        .markdown(data-markdown="" link="/markdown/other-calendars.md")
+        iframe(width="560" height="315" src="https://www.youtube.com/embed/7xrvimc00bI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+         p &nbsp;
+         md-divider
+        p &nbsp;
+        iframe(width="560" height="315" src="https://www.youtube.com/embed/0sz9X3AmiJ4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+    md-tab(label="Installing Your App")
+      div(class="md-padding") 
+        .markdown(data-markdown="" link="/markdown/install.md")

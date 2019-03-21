@@ -6,7 +6,8 @@ p {
 }
 a {
   text-decoration: none;
-  color: inherit;
+  color: #fb8e91;
+  font-weight: 500;
 }
 style {
   display: none;
@@ -49,8 +50,15 @@ div.mdl-progress::after {
 }
 code {
   background-color: #dedede;
-  font-family: IBM Plex Sans Condensed, Roboto, Helvetica Neue, sans-serif;
-  padding: 0 2px;
+  padding: 0 2px 2px 2px;
+}
+pre {
+  background-color: #595d59;
+  padding: 6px;
+  color: #fff;
+}
+pre code {
+  background-color: transparent;
 }
 .hint {
   position: absolute;
