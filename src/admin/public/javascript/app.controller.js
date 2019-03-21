@@ -4,6 +4,8 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
   db.settings({
     timestampsInSnapshots: true
   })
+  
+  $scope.currentRelease = "release-1.0.2"
 
   $scope.myData = [];
   $scope.schedules = []
@@ -26,7 +28,6 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
   $scope.showDemoButton = false
   $scope.settings = {}
   $scope.toggleLeft = buildDelayedToggler('left')
-
   
 
   function debounce (func, wait, context) {
@@ -629,30 +630,6 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
     $scope.installApplication($scope.selectedDemo.schedule, JSON.stringify({'services': app.services}))
   }
 
-  $scope.setSelectedDemoKiosk = function(id, schedule, galleryName) {
-    if(!$scope.installDone) return false
-    $scope.selectedDemo = {
-      "galleryName": galleryName,
-      "schedule": schedule,
-      "services": [
-        {
-          "image": "index.docker.io/oaklabs/app-signage:release-1.0.9",
-          "environment": {
-                    "API_KEY": "r7eJvn9HIvMh25CWknMUFoNuW2d2",
-                    "GALLERY_NAME": galleryName
-                }
-          
-        }
-      ]
-    }
-
-    
-
-    $timeout(function(){
-      $('.st1').removeClass("selected");
-      $(id).addClass('selected')
-    })
-  }
   $scope.clearSelectedDemoKiosks = function() {
     $timeout(function(){
       $scope.selectedDemo = {}

@@ -44,13 +44,13 @@ http://dashboard/api/v5/machine/xxxxxxxxxx/application/install?streaming=true&ti
 
   Where the dashboard machine is your machine mac address that OakOS is installed on.
 
-- Here is a request body to use
+- Here is a sample request body:
 
 ``` json
 {
   "services": [
     {
-      "image": "index.docker.io/oaklabs/app-schedule:release-1.0.0",
+      "image": "index.docker.io/oaklabs/app-schedule:{{$parent.currentRelease}}",
       "environment": {
         "API_KEY": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
         "SCHEDULE_NAME": "google_calendar",
