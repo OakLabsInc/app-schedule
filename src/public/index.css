@@ -20,21 +20,27 @@ body {
   width: 100%;
   margin: 0;
   position: relative;
-  font-size: 2vh;
+  font-size: 1.35rem;
 }
 body {
   background-color: #000;
   color: #fff;
 }
 body .list {
-  min-width: 40%;
+  min-width: 70%;
   text-align: center;
   margin: 0 auto;
 }
 body .list .list-item {
-  margin: 40px;
+  min-width: 40%;
+  margin: 20px 0;
   padding-bottom: 10px;
   border-bottom: 1px solid #dedede;
+}
+body .list .list-item .md-headline {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  margin-top: 70px;
 }
 body .list .list-item .title {
   text-transform: capitalize;

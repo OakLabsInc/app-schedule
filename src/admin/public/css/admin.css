@@ -188,7 +188,7 @@ input:-webkit-autofill {
   padding: 100px 0;
 }
 .preview .list {
-  min-width: 100%;
+  min-width: 70%;
   text-align: center;
   margin: 0 auto;
 }

@@ -52,8 +52,6 @@ app.controller('appController', function ($log, $sce, $timeout, $scope, $http, $
     
   $scope.initApp = function (doc) {
     $scope.schedule = doc.data()
-    $scope.events = $scope.schedule.events
-    $scope.schedule.name = _.startCase(doc.id)
   }
 
   $scope.mdToHtml = function (text) {
@@ -69,14 +67,20 @@ app.controller('appController', function ($log, $sce, $timeout, $scope, $http, $
     return date;
   }
 
-  $scope.todayFilter = function(item) {
-    return moment(item.start).format("MM-DD-YYYY") === moment(Date.now()).format("MM-DD-YYYY")
-  }
-
   $scope.getTodayDate = function(){
     return moment(Date.now()).format("MM-DD-YYYY")
   }
 
+  $scope.betweenFilter = function(item) {
+    return moment(item.start).isBetween(moment($scope.schedule.startDate).format("MM-DD-YYYY"), moment($scope.schedule.endDate).add(1,'days').format("MM-DD-YYYY"))
+  }
+
+  $scope.startCase = function(str) {
+    return _.startCase(str)
+  }
+  $scope.isAllDay = function(item) {
+    return $scope.formatDateString(item.start, 'h:mm a') === $scope.formatDateString(item.end, 'h:mm a')
+  }
 
   oak.ready()
 })
