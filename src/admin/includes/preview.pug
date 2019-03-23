@@ -1,0 +1,12 @@
+md-content.preview(ng-style="{'background-color':settings.selectedSchedule.backgroundColor,'color':settings.selectedSchedule.textColor}")
+  div.md-display-2(ng-hide="settings.selectedSchedule.hideScheduleName" layout="row" layout-fill   layout-align="center center" ng-cloak) {{startCase(settings.selectedSchedule.name)}}
+  div.list(layout="column" layout-fill   layout-align="center center" )
+    div.list-item(ng-repeat="item in sortedEvents = (settings.selectedSchedule.events | filter : betweenFilter | orderBy : sortStartDate : false)") 
+      div.md-headline(ng-if="formatDateString(item.start,'L') != formatDateString(sortedEvents[$index -1].start, 'L') && settings.selectedSchedule.dayDateFormat != 'None'") {{formatDateString(item.start,settings.selectedSchedule.dayDateFormat)}}
+      div( layout="row" layout-align="space-between center")
+        div {{item.summary}}
+        div(ng-hide="settings.selectedSchedule.hideEventTimes")
+          div(ng-if="!isAllDay(item)") {{formatDateString(item.start, 'h:mm a')}} - {{formatDateString(item.end, 'h:mm a')}}
+          div(ng-if="isAllDay(item)") All Day
+
+  

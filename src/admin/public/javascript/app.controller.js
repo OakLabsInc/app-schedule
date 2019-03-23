@@ -1,4 +1,4 @@
-app.controller('appController', function AppController ($http, $log, $scope, $rootScope, $timeout, $mdToast, $firebaseObject, User, $mdSidenav, $mdPanel, $mdDialog, $sce, Oboe, $cookies, jwtHelper, $httpParamSerializerJQLike, moment, $filter) {
+app.controller('appController', function AppController ($http, $log, $scope, $rootScope, $timeout, $mdToast, $firebaseObject, User, $mdSidenav, $mdPanel, $mdDialog, $sce, Oboe, $cookies, jwtHelper, $httpParamSerializerJQLike, moment, $filter,_) {
   var db = firebase.firestore()
 
   db.settings({
@@ -27,6 +27,14 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
   }
   $scope.showDemoButton = false
   $scope.settings = {}
+  $scope.dayDateFormat = 'LL'
+  $scope.timeDateFormat = 'hh:mm a'
+
+  $scope.dayFormats = [
+    {'label':'09/04/1986','value': 'L'},
+    {'label':'September 4, 1986','value': 'LL'}
+  ]
+
   $scope.toggleLeft = buildDelayedToggler('left')
   
 
@@ -237,76 +245,77 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
         })
       })
       $log.info('schedules', $scope.schedules)
+      
     })
   }
 
-  $scope.convertScheduleToJson = function(calendar) {
-    var events = $scope.parseCalendar(calendar)
-    $scope.settings.selectedSchedule.events = events
-    $scope.saveSchedule($scope.settings.selectedSchedule)
-  }
-  $scope.parseCalendar = function(data) {
-    var jcalData = ICAL.parse(data);
-    var comp = new ICAL.Component(jcalData);
-    var vevents = comp.getAllSubcomponents("vevent");
-    var events = []
+  // $scope.convertScheduleToJson = function(calendar) {
+  //   var events = $scope.parseCalendar(calendar)
+  //   $scope.settings.selectedSchedule.events = events
+  //   $scope.saveSchedule($scope.settings.selectedSchedule)
+  // }
+  // $scope.parseCalendar = function(data) {
+  //   var jcalData = ICAL.parse(data);
+  //   var comp = new ICAL.Component(jcalData);
+  //   var vevents = comp.getAllSubcomponents("vevent");
+  //   var events = []
 
-    for(var i in vevents){
-      let event = {}
-      let props = vevents[i].getAllProperties()
-      for (let p in props) {
-        event[props[p].name] = props[p].toJSON()[3]
-      }
+  //   for(var i in vevents){
+  //     let event = {}
+  //     let props = vevents[i].getAllProperties()
+  //     for (let p in props) {
+  //       event[props[p].name] = props[p].toJSON()[3]
+  //     }
 
-      events.push(event)
+  //     events.push(event)
 
-    }
-    $log.info("jcalData: ", events)
+  //   }
+  //   $log.info("jcalData: ", events)
 
-    return events
+  //   return events
 
   
-  }
+  // }
 
-  $scope.convertScheduleToJsonFromUrl = function(user, myUrl) {
-    // var trustedUrl = $sce.trustAsResourceUrl(url);
-    let oldSchedule = $scope.settings.selectedSchedule
-    if(myUrl){
+  // $scope.convertScheduleToJsonFromUrl = function(user, myUrl) {
+  //   // var trustedUrl = $sce.trustAsResourceUrl(url);
+  //   let oldSchedule = $scope.settings.selectedSchedule
+  //   if(myUrl){
 
-      var req = {
-        method: 'POST',
-        url: 'http://localhost:5001/oak-schedule/us-central1/getIcsContentsFromUrl',
-        data: { 
-          user: user, 
-          url: myUrl 
-        }
-       }
-      $http(req).then(
-        function(success){
-          var events = $scope.parseCalendar(success.data)
-          $scope.settings.selectedSchedule.events = events
-          $scope.saveSchedule($scope.settings.selectedSchedule)
-        }, function(error){
-          $log.error("Calendar Url Error: ", error)
-        })
+  //     var req = {
+  //       method: 'POST',
+  //       url: 'http://localhost:5001/oak-schedule/us-central1/getIcsContentsFromUrl',
+  //       data: { 
+  //         user: user, 
+  //         url: myUrl 
+  //       }
+  //      }
+  //     $http(req).then(
+  //       function(success){
+  //         var events = $scope.parseCalendar(success.data)
+  //         $scope.settings.selectedSchedule.events = events
+  //         $scope.saveSchedule($scope.settings.selectedSchedule)
+  //       }, function(error){
+  //         $log.error("Calendar Url Error: ", error)
+  //       })
 
-    } else {
-      $mdToast.show(
-        $mdToast.simple()
-          .textContent('No Url Entered')
-          .position('bottom left')
-          .hideDelay(1000)
-          .toastClass("error-toast")
-      )
-    }
-    // var jsonData = ical2json.convert(calendar);
-    // $log.info("jsonData: ", jsonData)
-    // //$scope.addSchedule(name)
-    // $scope.settings.selectedSchedule.events = jsonData['VCALENDAR'][0]['VEVENT']
-    // $scope.saveSchedule($scope.settings.selectedSchedule)
+  //   } else {
+  //     $mdToast.show(
+  //       $mdToast.simple()
+  //         .textContent('No Url Entered')
+  //         .position('bottom left')
+  //         .hideDelay(1000)
+  //         .toastClass("error-toast")
+  //     )
+  //   }
+  //   // var jsonData = ical2json.convert(calendar);
+  //   // $log.info("jsonData: ", jsonData)
+  //   // //$scope.addSchedule(name)
+  //   // $scope.settings.selectedSchedule.events = jsonData['VCALENDAR'][0]['VEVENT']
+  //   // $scope.saveSchedule($scope.settings.selectedSchedule)
 
 
-  }
+  // }
 
   $scope.addCalendarSubscriptionForUser = function (user, selectedCalendar) {
     $scope.installInProgress = true
@@ -509,109 +518,8 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
       $scope.status = 'You decided to keep your debt.';
     });
   };
-  $scope.setApplicationRequest = function(serviceSelect){
-    $timeout(function() {
-      $scope.services =  JSON.stringify({
-        services: serviceSelect.services
-      }, null, " ")
-      var textarea = document.getElementById('servicesTextArea');
-      textarea.value = $scope.services
-      
-    })
-  }
-  $scope.installApplication = function(schedule, services) {
-    function isJson(str) {
-        try {
-            JSON.parse(str);
-        } catch (e) {
-            return false;
-        }
-        return true;
-    }
- 
-    if(typeof services === 'undefined') return false
-    var installUrl = 'https://' + $scope.environment.dashboardHost + '/api/' + $scope.environment.dashboardVersion + '/schedule/' + schedule + '/application/install?streaming=true&timeout=3000000'
-    $scope.installDone = false;
-    $scope.installError = false;
-    $scope.installStep = "STARTING INSTALL"
-    $scope.installDetails = " "
-    Oboe({
-      url: installUrl ,
-      pattern: '{step}',
-      method: 'POST',
-      body: JSON.parse(services),
-      data: '',
-      headers: {
-        'Authorization': 'Bearer ' + $scope.bearerToken,
-        'Content-Type': 'application/json'
-      },
-      start: function(stream) {
-          $scope.installDone = false;
-          $scope.installError = false;
-          $log.info("Install Stream Started: ")
-      },
-      done: function(parsedJSON) {
 
-        $log.info("Done: ", parsedJSON)
-        if(parsedJSON.hasOwnProperty('error')){
-          $scope.installDone = true;
-          $scope.installError = true;
-          $scope.installErrorText = parsedJSON.error;
-          $timeout(function () {
-            $scope.installDone = true;
-            $scope.installError = false;
-          },3000)
-        }
-      }
-    }).then(function(error) {
-        // promise is resolved
-        $log.info("Promise Resolved: ", error)
 
-    }, function(error) {
-        // handle errors
-        $log.info("Errors: ", error)
-        $scope.installDone = true;
-        $scope.installError = true;
-    }, function(node) {
-        // node received
-        $scope.installStep = node.step.replace("_", " ");
-        if (isJson(node.details)) {
-          let details = JSON.parse(node.details)
-          $scope.installDetails = details.status
-        }
-        
-        $log.info("Node: ", node)
-        
-        if (node.step === "END") {
-          
-          var swapUrl = 'https://' + $scope.environment.dashboardHost +'/api/' + $scope.environment.dashboardVersion + '/schedule/' + schedule + '/application/SwapIdleAndLive'
-          var swapRequest = {
-            headers: {
-              'Authorization': 'Bearer ' + $scope.bearerToken ,
-              'Content-Type': 'application/json'
-            },
-            url: swapUrl,
-            data: ''
-          }
-          $log.info('SWAP CALL')
-          $scope.installStep = "SWAPPING APPLICATION"
-          $http(swapRequest).then( function (success){
-            $log.info("Success: ", success)
-            $timeout(function () {
-              $scope.installDone = true;
-              $scope.installError = false;
-            },1000)
-          }, function (error){
-            $log.info("Error: ", error)
-            
-          })
-        }
-        if($scope.myData.length === 1000) {
-            $scope.stream.abort();
-            alert('The maximum of one thousand records reached');
-        }
-    });
-  }
 
   $scope.mdToHtml = function (text) {
     return $sce.trustAsHtml(markdown.toHTML(text));
@@ -648,15 +556,30 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
   $scope.getTomorrowDate = function(){
     return moment(Date.now()).add(1,'days').format("MM-DD-YYYY")
   }
-  $scope.formatUtcDateString = function(date, format, type) {
+  $scope.formatDateString = function(date, format) {
     return moment(date).format(format)
   }
   $scope.todayFilter = function(item) {
     return moment(item.start).format("MM-DD-YYYY") === moment(Date.now()).format("MM-DD-YYYY") || moment(item.end).format("MM-DD-YYYY") === moment(Date.now()).format("MM-DD-YYYY")
   }
 
+  $scope.betweenFilter = function(item) {
+    return moment(item.start).isBetween(moment($scope.settings.selectedSchedule.startDate).format("MM-DD-YYYY"), moment($scope.settings.selectedSchedule.endDate).add(1,'days').format("MM-DD-YYYY"))
+  }
+
   $scope.tomorrowFilter = function(item) {
     return moment(item.start).format("MM-DD-YYYY") === moment(Date.now()).add(1,'days').format("MM-DD-YYYY") || (moment(item.start).format("MM-DD-YYYY") === moment(Date.now()).add(1,'days').format("MM-DD-YYYY") &&  moment(item.end).format("MM-DD-YYYY") === moment(Date.now()).add(2,'days').format("MM-DD-YYYY"))
+  }
+
+  $scope.addOneDayToEndDate = function(startDate) {
+    $scope.settings.selectedSchedule.endDate =  moment(startDate)
+  }
+
+  $scope.startCase = function(str) {
+    return _.startCase(str)
+  }
+  $scope.isAllDay = function(item) {
+    return $scope.formatDateString(item.start, 'h:mm a') === $scope.formatDateString(item.end, 'h:mm a')
   }
   // $scope.initApp = function () {
   //   $scope.validateAuthToken()

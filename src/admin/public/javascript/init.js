@@ -6,7 +6,7 @@ function parseDate(input) {
   }
   
 var app = angular.module('showroomApp', ['ngMaterial', 'ngMessages', 'mdColorPicker', 'firebase', 'ngOboe', 'ngCookies', 'angular-jwt', 'angularMoment'])
-.constant('_', window.lodash)
+.constant('_', window._)
 .run(function($http) {
 //     $http.defaults.headers.common['Content-Type'] = 'application/json';
     // $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";

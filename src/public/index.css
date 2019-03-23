@@ -20,7 +20,7 @@ body {
   width: 100%;
   margin: 0;
   position: relative;
-  font-size: 2vw;
+  font-size: 2vh;
 }
 body {
   background-color: #000;
@@ -35,5 +35,7 @@ body .list .list-item {
   margin: 40px;
   padding-bottom: 10px;
   border-bottom: 1px solid #dedede;
+}
+body .list .list-item .title {
   text-transform: capitalize;
 }

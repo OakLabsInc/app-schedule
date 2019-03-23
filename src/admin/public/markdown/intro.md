@@ -54,6 +54,7 @@ http://dashboard/api/v5/machine/xxxxxxxxxx/application/install?streaming=true&ti
       "environment": {
         "API_KEY": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
         "SCHEDULE_NAME": "google_calendar",
+        "TZ": "America/Los_Angeles",
         "NODE_ENV": "production"
       }
     }

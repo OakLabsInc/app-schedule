@@ -8,7 +8,5 @@ html
       div.list(layout="column"  layout-align="center center")
         div.list-item(layout-fill layout="row" layout-align="space-between center"  ng-repeat="event in events | filter : todayFilter | orderBy : sortStartDate : false")
           div.title {{event.summary}}
-          div.date {{ formatDateString(event.start,'hh:mm a') }} - {{ formatDateString(event.end,'hh:mm a' )}}
-
-
+          div.date {{ formatDateString(event.start,'LT') }} - {{ formatDateString(event.end,'LT' )}}
     include footer.pug

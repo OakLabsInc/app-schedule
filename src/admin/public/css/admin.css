@@ -6,8 +6,8 @@ p {
 }
 a {
   text-decoration: none;
-  color: #fb8e91;
-  font-weight: 500;
+  color: #ff7275;
+  font-weight: 400;
 }
 style {
   display: none;
@@ -47,6 +47,9 @@ div.mdl-progress::after {
 }
 .mdl-progress {
   height: 5px;
+}
+md-input-container {
+  margin: 0;
 }
 code {
   background-color: #dedede;
@@ -180,4 +183,24 @@ md-card md-card-title md-card-title-media .md-media-md img {
 }
 input:-webkit-autofill {
   border-color: #9b9fc4 !important;
+}
+.preview {
+  padding: 100px 0;
+}
+.preview .list {
+  min-width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+.preview .list .list-item {
+  min-width: 40%;
+  margin: 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dedede;
+}
+.preview .list .list-item .md-headline {
+  margin-bottom: 15px;
+}
+.preview .list .list-item .title {
+  text-transform: capitalize;
 }
