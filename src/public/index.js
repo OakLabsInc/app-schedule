@@ -27,6 +27,9 @@ app.controller('appController', function ($log, $sce, $timeout, $scope, $http, $
   var cursorPromises = []
   var timer
 
+  $scope.foundItem = []
+  $scope.timeProgress = []
+
   // main window touches. this will log all tapped items, and also add the UI ripple of the tapped area
   $scope.ripples = []
 
@@ -42,7 +45,12 @@ app.controller('appController', function ($log, $sce, $timeout, $scope, $http, $
         var source = doc.metadata.hasPendingWrites ? 'Local' : 'Server'
         console.log(source, ' data: ', doc.data())
         $timeout(function () {
-          $scope.initApp(doc)
+          if (!$scope.schedule){
+            $scope.initApp(doc)
+          } else {
+            oak.reload()
+          }
+
         })
       })
     }, function errorCallback (response) {
@@ -74,6 +82,54 @@ app.controller('appController', function ($log, $sce, $timeout, $scope, $http, $
   $scope.betweenFilter = function(item) {
     return moment(item.start).isBetween(moment($scope.schedule.startDate).format("MM-DD-YYYY"), moment($scope.schedule.endDate).add(1,'days').format("MM-DD-YYYY"))
   }
+
+  $scope.displayCurrentProgress = function(item, index) {
+
+    let now = moment().tz('America/Los_Angeles')
+    let start = moment(item.start).tz('America/Los_Angeles')
+    let end = moment(item.end).tz('America/Los_Angeles')
+   
+    let shouldShow = false
+
+    if(now.isBetween(start, end) && !$scope.foundItem[index]) {
+      
+      shouldShow = true
+
+      $log.info(" ########################################## ")
+      $log.info("now: ", now.format())
+      $log.info("start: ", start.format())
+      $log.info("end: ", end.format())
+
+      
+      $scope.foundItem[index] = {
+        item: item,
+        timer: setInterval($scope.setProgress, 1000, index)
+      }
+      $scope.setProgress(index)
+
+      return true
+    } else {
+      return false
+    }
+
+  }
+  $scope.setProgress = function(index) {
+      let item = $scope.foundItem[index].item
+      let now = moment().tz('America/Los_Angeles')
+      let start = moment(item.start)
+      let end = moment(item.end)
+      let full = end.diff(start, 'minutes')
+      let nowMinutes = now.diff(start, 'minutes')
+      $timeout(function(){
+        $scope.timeProgress[index] = nowMinutes*100/full 
+        if($scope.timeProgress[index] == 100 || $scope.isAllDay(item)) {
+          clearInterval($scope.foundItem[index].timer)
+        }
+      })
+
+  }
+
+  
 
   $scope.startCase = function(str) {
     return _.startCase(str)

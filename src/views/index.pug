@@ -7,11 +7,14 @@ html
     div(ng-style="{'background-color':schedule.backgroundColor,'color':schedule.textColor}" layout="column" layout-fill   layout-align="center center" )
       div.md-display-2(ng-hide="schedule.hideScheduleName" layout="row" ng-cloak) {{startCase(schedule.name)}}
       div.list
-        div.list-item(ng-repeat="item in sortedEvents = (schedule.events | filter : betweenFilter | orderBy : sortStartDate : false)") 
+        div.list-item(ng-init="displayCurrentProgress(item, $index)"  ng-repeat="item in sortedEvents = (schedule.events | filter : betweenFilter | orderBy : sortStartDate : false)") 
           div.md-headline(ng-if="formatDateString(item.start,'L') != formatDateString(sortedEvents[$index -1].start, 'L') && schedule.dayDateFormat != 'None'") {{formatDateString(item.start,schedule.dayDateFormat)}}
           div( layout="row" layout-align="space-between center")
             div {{item.summary}}
             div(ng-hide="schedule.hideEventTimes")
               div(ng-if="!isAllDay(item)") {{formatDateString(item.start, 'h:mm a')}} - {{formatDateString(item.end, 'h:mm a')}}
               div(ng-if="isAllDay(item)") All Day
+          div.progress(ng-if="foundItem[$index].item != null && !isAllDay(item) && timeProgress[$index] < 100")
+            md-progress-linear(md-mode="determinate" value="{{timeProgress[$index]}}")
+        
     include footer.pug
