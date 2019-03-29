@@ -85,9 +85,9 @@ app.controller('appController', function ($log, $sce, $timeout, $scope, $http, $
 
   $scope.displayCurrentProgress = function(item, index) {
 
-    let now = moment().tz('America/Los_Angeles')
-    let start = moment(item.start).tz('America/Los_Angeles')
-    let end = moment(item.end).tz('America/Los_Angeles')
+    let now = moment().tz($scope.environment.timezone)
+    let start = moment(item.start).tz($scope.environment.timezone)
+    let end = moment(item.end).tz($scope.environment.timezone)
    
     let shouldShow = false
 
@@ -115,7 +115,7 @@ app.controller('appController', function ($log, $sce, $timeout, $scope, $http, $
   }
   $scope.setProgress = function(index) {
       let item = $scope.foundItem[index].item
-      let now = moment().tz('America/Los_Angeles')
+      let now = moment().tz($scope.environment.timezone)
       let start = moment(item.start)
       let end = moment(item.end)
       let full = end.diff(start, 'minutes')

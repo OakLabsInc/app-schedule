@@ -1,6 +1,7 @@
 
 const apiKey = process.env.API_KEY
 const scheduleName = process.env.SCHEDULE_NAME
+const timezone = process.env.TZ
 
 const oak = require('oak')
 const { join } = require('path')
@@ -33,7 +34,7 @@ app.get('/', function (req, res) {
   res.render('index')
 })
 app.get('/env', function (req, res) {
-  res.json({ apiKey, scheduleName })
+  res.json({ apiKey, scheduleName, timezone })
 })
 function loadWindow () {
   oak.load({

@@ -1,4 +1,4 @@
-app.controller('appController', function AppController ($http, $log, $scope, $rootScope, $timeout, $mdToast, $firebaseObject, User, $mdSidenav, $mdPanel, $mdDialog, $sce, Oboe, $cookies, jwtHelper, $httpParamSerializerJQLike, moment, $filter,_) {
+app.controller('appController', function AppController ($http, $log, $scope, $rootScope, $timeout, $mdToast, $firebaseObject, User, $mdSidenav, $mdPanel, $mdDialog, $sce, Oboe, $cookies, jwtHelper, $httpParamSerializerJQLike, $filter,_) {
   var db = firebase.firestore()
 
   db.settings({
@@ -29,6 +29,7 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
   $scope.settings = {}
   $scope.dayDateFormat = 'LL'
   $scope.timeDateFormat = 'hh:mm a'
+  $scope.timezones = moment.tz.names()
 
   $scope.dayFormats = [
     {'label':'09/04/1986','value': 'L'},
