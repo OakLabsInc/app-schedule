@@ -8,7 +8,7 @@ html
       div.md-display-2(ng-hide="schedule.hideScheduleName" layout="row" ng-cloak) {{startCase(schedule.name)}}
       div.list
         div.list-item(ng-init="displayCurrentProgress(item, $index)"  ng-repeat="item in sortedEvents = (schedule.events | filter : betweenFilter | orderBy : sortStartDate : false)") 
-          div.md-headline(ng-if="formatDateString(item.start,'L') != formatDateString(sortedEvents[$index -1].start, 'L') && schedule.dayDateFormat != 'None'") {{formatDateString(item.start,schedule.dayDateFormat)}}
+          div.md-headline(ng-if="(formatDateString(item.start,'L') != formatDateString(sortedEvents[$index -1].start, 'L') || $index == 0) && schedule.dayDateFormat != 'None'") {{formatDateString(item.start,schedule.dayDateFormat)}}
           div( layout="row" layout-align="space-between center")
             div {{item.summary}}
             div(ng-hide="schedule.hideEventTimes")
@@ -16,5 +16,5 @@ html
               div(ng-if="isAllDay(item)") All Day
           div.progress(ng-if="foundItem[$index].item != null && !isAllDay(item) && timeProgress[$index] < 100")
             md-progress-linear(md-mode="determinate" value="{{timeProgress[$index]}}")
-        
+
     include footer.pug

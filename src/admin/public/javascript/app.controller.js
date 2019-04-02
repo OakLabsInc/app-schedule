@@ -5,7 +5,7 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
     timestampsInSnapshots: true
   })
   
-  $scope.currentRelease = "release-1.0.7"
+  $scope.currentRelease = "release-1.0.8"
 
   $scope.myData = [];
   $scope.schedules = []
@@ -33,7 +33,8 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
 
   $scope.dayFormats = [
     {'label':'09/04/1986','value': 'L'},
-    {'label':'September 4, 1986','value': 'LL'}
+    {'label':'September 4, 1986','value': 'LL'},
+    {'label': 'Sunday, September 28th 1986', 'value':'dddd, MMMM Do YYYY'}
   ]
 
   $scope.toggleLeft = buildDelayedToggler('left')
