@@ -5,7 +5,7 @@ app.controller('appController', function AppController ($http, $log, $scope, $ro
     timestampsInSnapshots: true
   })
   
-  $scope.currentRelease = "release-1.0.2"
+  $scope.currentRelease = "release-1.0.6"
 
   $scope.myData = [];
   $scope.schedules = []
