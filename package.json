@@ -12,7 +12,7 @@
     "test": "exit 0;"
   },
   "engines": {
-    "node": "10.15.1"
+    "node": "10.15.3"
   },
   "repository": {
     "type": "git",
@@ -25,22 +25,23 @@
   },
   "homepage": "https://github.com/OakLabsInc/app-schedule#readme",
   "devDependencies": {
-    "firebase-functions": "^2.2.0",
-    "firebase-tools": "^6.3.1",
-    "gulp": "~3.9.1",
-    "gulp-pug": "~3.3.0",
-    "gulp-stylus": "~2.6.0",
-    "gulp-watch": "~4.3.11",
-    "oak": "~5.0.4",
-    "standard": "^11.0.1"
+    "firebase-functions": "^3.2.0",
+    "firebase-tools": "^7.3.2",
+    "gulp": "~4.0.2",
+    "gulp-pug": "~4.0.1",
+    "gulp-stylus": "~2.7.0",
+    "gulp-watch": "~5.0.1",
+    "oak": "~5.0.9",
+    "standard": "^14.3.1"
   },
   "dependencies": {
-    "express": "~4.16.3",
-    "lodash": "^4.17.4",
+    "express": "~4.17.1",
+    "firebase-admin": "^8.6.0",
+    "lodash": "^4.17.15",
     "md-color-picker": "^0.2.6",
     "nib": "~1.1.2",
     "pug-cli": "~1.0.0-alpha6",
-    "stylus": "~0.54.5"
+    "stylus": "~0.54.7"
   },
   "standard": {
     "globals": [
