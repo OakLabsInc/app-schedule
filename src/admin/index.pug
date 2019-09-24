@@ -13,14 +13,14 @@ html
             a(style="color:#ffffff;cursor:pointer" ng-click="goHome()" ng-if="isLoggedIn" ng-cloak="")
               md-icon.material-icons help
             md-button(ng-click="logout()" ng-if="isLoggedIn" ng-cloak="")
-              | Logout 
+              | Logout
       div(ng-if="isLoggedIn" style="height:100%;overflow:hidden" layout="row")
           md-sidenav.md-sidenav-left(md-component-id="left" layout="column" layout-align="top left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4")
             md-toolbar(md-colors="{background: 'default-primary-100'}" layout="row" layout-align="space-between")
               .md-toolbar-tools
                 md-input-container
                   md-button#addSchedule.md-fab.md-mini(ng-click="showAddSchedulePrompt($event)" ng-disabled="showAuthForm")
-                    md-icon.material-icons add
+                    md-icon.material-icons add 
                 span.md-headline Schedules 
             md-content(layout-padding="" ng-show="!scheduleFormOpen") 
               md-radio-group.scheduleList(ng-model="settings.selectedSchedule")

@@ -16,5 +16,5 @@ html
               div(ng-if="isAllDay(item)") All Day
           div.progress(ng-if="foundItem[$index].item != null && !isAllDay(item) && timeProgress[$index] < 100")
             md-progress-linear(md-mode="determinate" value="{{timeProgress[$index]}}")
-
-    include footer.pug
+            
+    include footer.pug 

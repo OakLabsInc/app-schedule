@@ -1,43 +1,46 @@
 
 div
 
-  div(class="md-block" layout="column" layout-gt-xs="row")
-    div(flex)
+  div(class="md-block" layout="column" layout-gt-xs="row" layout-margin)
+    md-card(flex)
       h2 Start Date
       md-datepicker(ng-model="settings.selectedSchedule.startDate" md-placeholder="Enter date" ng-change="addOneDayToEndDate(settings.selectedSchedule.startDate)")
-    div(flex)
+    md-card(flex)
       h2 End Date
       md-datepicker(ng-model="settings.selectedSchedule.endDate"  md-placeholder="Enter date")
-  div(class="md-block" layout="column" layout-gt-xs="row")
-    div(flex)
+  div(class="md-block" layout="column" layout-gt-xs="row"  layout-margin)
+    md-card(flex)
       h2 Background Color
       div(md-color-picker="colorPicker.options" md-color-history="false"  ng-model="settings.selectedSchedule.backgroundColor")
-    div(flex)
+    md-card(flex)
       h2 Text Color
       div(md-color-picker="colorPicker.options" md-color-history="false"  ng-model="settings.selectedSchedule.textColor")
-  div(class="md-block" layout="column" layout-gt-xs="row")
-    div(flex)
+  div(class="md-block" layout="column" layout-gt-xs="row"  layout-margin)
+    md-card(flex)
       h2 Day Format
       md-input-container(class="md-block" flex-gt-sm layout="row" layout-align="left center" layout-fill flex)
         md-select(ng-model="settings.selectedSchedule.dayDateFormat" )
           md-option None
           md-option(ng-value="format.value" ng-repeat='format in dayFormats' ) {{format.label}}
-    div(flex)
-      
+    md-card(flex)
+      h2 Hide Elements
       md-input-container(class="md-block" flex-gt-sm layout="row" layout-align="left center" layout-fill flex)
-        h2 Hide
         md-checkbox(ng-model="settings.selectedSchedule.hideScheduleName") Schedule Name
         md-checkbox(ng-model="settings.selectedSchedule.hideEventTimes") Event Dates   
-  div(class="md-block" flex-gt-sm)
-    h2 Subscription Url (*.ics)
-    md-input-container(class="md-block" flex-gt-sm layout="row" layout-align="left center" layout-fill flex)
-      input(type="text" ng-model="settings.selectedSchedule.calendarUrl" )
-  div(class="md-block" flex-gt-sm)
-    h2 Save Settings 
-    md-button.md-fab.md-mini(id="uploadButton" class="" ng-click="addCalendarSubscriptionForUser(user,settings.selectedSchedule)")
-      md-icon(class="material-icons") save 
-  h2 Install Snippet
-  .markdown(data-markdown="" link="/markdown/selected-install.md") 
+  div(class="md-block" layout="column" layout-gt-xs="row"  layout-margin)
+    md-card(flex)
+      h2 Subscription Url (*.ics)
+      md-input-container(class="md-block" flex-gt-sm layout="row" layout-align="left center" layout-fill flex)
+        input(type="text" ng-model="settings.selectedSchedule.calendarUrl" )
+    md-card(flex)
+      h2 Save Settings 
+      md-input-container(class="md-block" flex-gt-sm layout="row" layout-align="left center" layout-fill flex)
+        md-button.md-fab.md-mini(id="uploadButton" class="" ng-click="addCalendarSubscriptionForUser(user,settings.selectedSchedule)")
+          md-icon(class="material-icons") save 
+  div(class="md-block" layout="column" layout-gt-xs="row"  layout-margin)
+    md-card(flex)
+      h2  Install Snippet
+      .markdown(data-markdown="" link="/markdown/selected-install.md") 
 
   p &nbsp;
   p &nbsp;
