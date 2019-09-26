@@ -15,3 +15,4 @@ services:
       - API_KEY=X11DQgKGIZex0yd7QQVtLhDljL13
       - SCHEDULE_NAME=oakos_intro
       - TZ=America/Los_Angeles
+      - ELECTRON_DISABLE_SECURITY_WARNINGS=true
