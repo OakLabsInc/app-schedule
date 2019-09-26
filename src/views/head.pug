@@ -20,14 +20,8 @@ head
     // Initialize Cloud Firestore through Firebase
     var db = firebase.firestore()
 
-
-
-    // Disable deprecated features
-    db.settings({
-      timestampsInSnapshots: true
-    });
     db.enablePersistence({
-      experimentalTabSynchronization:true
+      syncronizeTabs:true
     }).catch(function(err) {
       if (err.code == 'failed-precondition') {
           console.error('Multiple tabs open, persistence can only be enabled in one tab at a a time.')

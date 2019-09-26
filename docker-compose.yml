@@ -1,0 +1,17 @@
+---
+version: '3'
+services:
+  server:
+    build: .
+    image: oaklabs/app-schedule:test-dependencies
+    network_mode: host
+    devices:
+      - /dev/dri
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/shm:/dev/shm
+      - ./src:/app/src
+    environment:
+      - API_KEY=X11DQgKGIZex0yd7QQVtLhDljL13
+      - SCHEDULE_NAME=oakos_intro
+      - TZ=America/Los_Angeles
