@@ -1,7 +1,6 @@
 app.controller('appController', function AppController ($http, $log, $scope, $rootScope, $timeout, $mdToast, $firebaseObject, User, $mdSidenav, $mdPanel, $mdDialog, $sce, Oboe, $cookies, jwtHelper, $httpParamSerializerJQLike, $filter,_) {
   var db = firebase.firestore()
 
-  
   $scope.currentRelease = "release-1.0.8"
 
   $scope.myData = [];

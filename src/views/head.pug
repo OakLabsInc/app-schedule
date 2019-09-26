@@ -6,5 +6,27 @@ head
   link(href='/vendor/angular-material.min.css', rel='stylesheet', type='text/css')
   link(href='/index.css', rel='stylesheet', type='text/css')
   link(href='/vendor/demo.css', rel='stylesheet', type='text/css')
-  
+  script(src="/vendor/firebase.min.js")
+
+  script.
+    var app = firebase.initializeApp({
+      apiKey: "AIzaSyDr_LrNrgPwZXtSTXScZJ3DvMB-gmP2hec",
+      authDomain: "oak-schedule.firebaseapp.com",
+      databaseURL: "https://oak-schedule.firebaseio.com",
+      projectId: "oak-schedule",
+      storageBucket: "oak-schedule.appspot.com",
+      messagingSenderId: "1046369340167"
+    });
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore()
+
+    db.enablePersistence({
+      syncronizeTabs:true
+    }).catch(function(err) {
+      if (err.code == 'failed-precondition') {
+          console.error('Multiple tabs open, persistence can only be enabled in one tab at a a time.')
+      } else if (err.code == 'unimplemented') {
+          console.error('The current browser does not support all of the features required to enable persistence.')
+      }
+    });
 
