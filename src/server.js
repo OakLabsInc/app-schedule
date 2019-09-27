@@ -14,7 +14,7 @@ const stylus = require('stylus')
 const app = express()
 
 const port = process.env.PORT ? _.toNumber(process.env.PORT) : 9000
-
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = true
 let publicPath = join(__dirname, 'public')
 let viewsPath = join(__dirname, 'views')
 
