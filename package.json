@@ -25,10 +25,10 @@
   },
   "homepage": "https://github.com/OakLabsInc/app-schedule#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-pug": "^3.3.0",
+    "gulp": "^4.0.2",
+    "gulp-pug": "^4.0.1",
     "gulp-stylus": "^2.7.0",
-    "gulp-watch": "^4.3.11",
+    "gulp-watch": "^5.0.1",
     "oak": "~5.0.9",
     "standard": "^14.3.1"
   },
