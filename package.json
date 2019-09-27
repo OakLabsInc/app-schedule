@@ -25,19 +25,19 @@
   },
   "homepage": "https://github.com/OakLabsInc/app-schedule#readme",
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-pug": "^4.0.1",
-    "gulp-stylus": "^2.7.0",
-    "gulp-watch": "^5.0.1",
+    "gulp": "~4.0.2",
+    "gulp-pug": "~4.0.1",
+    "gulp-stylus": "~2.7.0",
+    "gulp-watch": "~5.0.1",
     "oak": "~5.0.9",
-    "standard": "^14.3.1"
+    "standard": "~14.3.1"
   },
   "dependencies": {
     "express": "~4.17.1",
-    "firebase-admin": "^8.6.0",
-    "firebase-functions": "^3.2.0",
-    "lodash": "^4.17.15",
-    "md-color-picker": "^0.2.6",
+    "firebase-admin": "~8.6.0",
+    "firebase-functions": "~3.2.0",
+    "lodash": "~4.17.15",
+    "md-color-picker": "~0.2.6",
     "nib": "~1.1.2",
     "pug-cli": "~1.0.0-alpha6",
     "stylus": "~0.54.7"
